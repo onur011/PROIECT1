@@ -1,6 +1,15 @@
 package jucatori;
 
+import utile.Constante;
+
 public final class Pyromancer extends Jucator {
+    public Pyromancer(final int x, final int y) {
+        this.setX(x);
+        this.setY(y);
+        this.setHp(Constante.HPPYROMANCER);
+        this.setXp(0);
+        this.setNivel(0);
+    }
 
     @Override
     public void incepeLupta(final Jucator jucator) {

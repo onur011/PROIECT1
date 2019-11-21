@@ -12,6 +12,7 @@ function cleanHomework
 {
 	find . -name "*.class" -type f -delete
 	rm -rf "$RESOURCES_DIRECTORY/out"
+	rm -rf fileio
 }
 
 function compileHomework

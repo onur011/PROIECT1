@@ -1,6 +1,15 @@
 package jucatori;
 
+import utile.Constante;
+
 public final class Knight extends Jucator {
+    public Knight(final int x, final int y) {
+        this.setX(x);
+        this.setY(y);
+        this.setHp(Constante.HPKNIGHT);
+        this.setXp(0);
+        this.setNivel(0);
+    }
     @Override
     public void incepeLupta(final Jucator jucator) {
         jucator.lupta(this);
