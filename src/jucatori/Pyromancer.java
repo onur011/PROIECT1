@@ -9,6 +9,7 @@ public final class Pyromancer extends Jucator {
         this.setHp(Constante.HPPYROMANCER);
         this.setXp(0);
         this.setNivel(0);
+        this.setMort(false);
     }
 
     @Override

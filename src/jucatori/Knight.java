@@ -9,6 +9,7 @@ public final class Knight extends Jucator {
         this.setHp(Constante.HPKNIGHT);
         this.setXp(0);
         this.setNivel(0);
+        this.setMort(false);
     }
     @Override
     public void incepeLupta(final Jucator jucator) {

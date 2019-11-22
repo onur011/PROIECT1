@@ -9,6 +9,7 @@ public final class Wizard extends Jucator {
         this.setHp(Constante.HPWIZZARD);
         this.setXp(0);
         this.setNivel(0);
+        this.setMort(false);
     }
     @Override
     public void incepeLupta(final Jucator jucator) {
@@ -21,7 +22,6 @@ public final class Wizard extends Jucator {
 
     @Override
     public void lupta(final Rogue rogue) {
-
     }
 
     @Override

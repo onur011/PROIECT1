@@ -14,7 +14,7 @@ public final class Main {
         InputReader input = new InputReader();
         ArrayList<String> harta, runde;
         ArrayList<Jucator> jucatori;
-        int n, m, r, p, i, j;
+        int n, m, r, p, i, j, k;
 
         //Se extrag informatiile utile pentru desfasurarea jocului.
         input.citire(args[0], args[1]);
@@ -28,9 +28,19 @@ public final class Main {
 
         //Runde joc
         for (i = 0; i < r; i++) {
-            //Mutarea jucatorilor
+            //Mutarea jucatorilor si declaram ca nu sunt in lupta
             for (j = 0; j < p; j++) {
+                jucatori.get(j).setSeLupta(false);
                 jucatori.get(j).muta(runde.get(i).charAt(j));
+            }
+
+            //Selectam luptele intre jucatori.
+            for (j = 0; j < p; j++) {
+                for (k = 0; k < p; k++) {
+                    if (j != k) {
+                        jucatori.get(j).cineLupta(jucatori.get(k));
+                    }
+                }
             }
         }
     }

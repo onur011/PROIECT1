@@ -6,6 +6,35 @@ public abstract class Jucator {
     private int x;
     private int y;
     private int nivel;
+    private boolean seLupta;
+    private boolean mort;
+
+    /**
+     * @param bool setam daca un jucator s-a luptat sau nu.
+     */
+    public void setSeLupta(final boolean bool) {
+        this.seLupta = bool;
+    }
+    /**
+     * @param jucator Se decide daca cei doi jucatori se vor lupta.
+     */
+    public void cineLupta(final Jucator jucator) {
+
+        if (this.x == jucator.x && this.y == jucator.y && !this.seLupta && !jucator.seLupta
+            && !this.mort && !jucator.mort) {
+            this.incepeLupta(jucator);
+            this.seLupta = true;
+            jucator.seLupta = true;
+
+        }
+    }
+
+    /**
+     * @param bool Starea caracterului.
+     */
+    public void setMort(final boolean bool) {
+        this.mort = bool;
+    }
 
     /**
      * @param x pozitia pe Ox.
@@ -15,10 +44,17 @@ public abstract class Jucator {
     }
 
     /**
-     * @return returneaza pozitia pe Ox.
+     * @return returneaza pozitia rand.
      */
     public int getX() {
         return this.x;
+    }
+
+    /**
+     * @return returneaza pozitie coloana.
+     */
+    public int getY() {
+        return this.y;
     }
 
     /**
