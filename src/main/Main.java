@@ -14,7 +14,7 @@ public final class Main {
         InputReader input = new InputReader();
         ArrayList<String> harta, runde;
         ArrayList<Jucator> jucatori;
-        int n, m, r, p;
+        int n, m, r, p, i, j;
 
         //Se extrag informatiile utile pentru desfasurarea jocului.
         input.citire(args[0], args[1]);
@@ -25,5 +25,13 @@ public final class Main {
         jucatori = input.getJucatori();
         harta = input.getHarta();
         runde = input.getRunde();
+
+        //Runde joc
+        for (i = 0; i < r; i++) {
+            //Mutarea jucatorilor
+            for (j = 0; j < p; j++) {
+                jucatori.get(j).muta(runde.get(i).charAt(j));
+            }
+        }
     }
 }

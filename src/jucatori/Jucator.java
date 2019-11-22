@@ -15,6 +15,13 @@ public abstract class Jucator {
     }
 
     /**
+     * @return returneaza pozitia pe Ox.
+     */
+    public int getX() {
+        return this.x;
+    }
+
+    /**
      * @param y pozitia pe Oy.
      */
     public void setY(final int y) {
@@ -40,6 +47,21 @@ public abstract class Jucator {
      */
     public void setNivel(final int nivel) {
         this.nivel = nivel;
+    }
+
+    /**
+     * @param chr functia de mutare a jucatorilor.
+     */
+    public void muta(final char chr) {
+        if (chr == 'U') {
+            this.x -= 1;
+        } else if (chr == 'D') {
+            this.x += 1;
+        } else if (chr == 'L') {
+            this.y -= 1;
+        } else if (chr == 'R') {
+            this.y += 1;
+        }
     }
 
     public abstract void incepeLupta(Jucator jucator);
