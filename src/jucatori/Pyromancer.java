@@ -76,7 +76,10 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Wizard wizard) {
+        this.atacaP(wizard, Constante.PLUS05);
+        wizard.atacaW(this, Constante.MINUS10, Constante.PLUS30);
 
+        this.dupaLupta(wizard, Constante.D50, Constante.D30);
     }
 
     //Fireblast
@@ -100,17 +103,23 @@ public final class Pyromancer extends Jucator implements Abilitati {
      * @param bonusRasa bonusul de rasa.
      */
     public void atacaP(final Jucator jucator, final float bonusRasa) {
-        float dmg1, dmg2, dmg2periodic, bonusTeren = 1.0f;
+        float dmg1, dmg2, dmg2periodic, bonusTeren = 1.0f, dmgFaraBonusRasa = 0;
+
         if (this.getTipTeren() == 'V') {
             bonusTeren = Constante.PLUS25;
         }
         //Se calculeaza dmg dat de primul jucator celui de al doilea.
         //Demage total este pus in variabila damage a celui care primeste dmg.
         dmg1 = this.abilitate1() * bonusTeren * bonusRasa;
+        dmgFaraBonusRasa += Math.round(this.abilitate1() * bonusTeren);
 
         dmg2 = this.abilitate2() * bonusTeren * bonusRasa;
+        dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
         dmg2periodic = (Constante.D50 + Constante.D30 * this.getNivel()) * bonusTeren
                 * bonusRasa;
+        jucator.setDmgFaraBonus(dmgFaraBonusRasa);
+        jucator.setTimpParalizat(0);
+        jucator.setParalizat(false);
         jucator.setDmgO(Math.round(dmg2periodic));
         jucator.setTimeDmgO(Constante.TIME2);
         jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));

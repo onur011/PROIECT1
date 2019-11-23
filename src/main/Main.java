@@ -30,6 +30,7 @@ public final class Main {
         for (i = 0; i < r; i++) {
             //Mutarea jucatorilor si declaram ca nu sunt in lupta
             for (j = 0; j < p; j++) {
+                jucatori.get(j).setDmgFaraBonus(0);
                 jucatori.get(j).setSeLupta(false);
                 jucatori.get(j).muta(runde.get(i).charAt(j));
             }

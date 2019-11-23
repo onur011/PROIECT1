@@ -18,7 +18,21 @@ public abstract class Jucator {
     private char tipCaracter;
     private boolean paralizat;
     private int timpParalizat;
+    private float dmgFaraBonus;
 
+    /**
+     * @param dmgFaraBonusRasa dmg primit fara bonus de rasa.
+     */
+    public void setDmgFaraBonus(final float dmgFaraBonusRasa) {
+        this.dmgFaraBonus = dmgFaraBonusRasa;
+    }
+
+    /**
+     * @return returneaza dmg luat fara bonus rasa.
+     */
+    public float getDmgFaraBonus() {
+        return this.dmgFaraBonus;
+    }
     /**
      * Returneaza hp initial al nivelului respectiv.
      */

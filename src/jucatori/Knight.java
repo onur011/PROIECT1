@@ -45,6 +45,10 @@ public final class Knight extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Wizard wizard) {
+        this.atacaK(wizard, Constante.MINUS20, Constante.PLUS05);
+        wizard.atacaW(this, Constante.PLUS20, Constante.PLUS40);
+
+        this.dupaLupta(wizard, Constante.D80, Constante.D30);
 
     }
     //Execute
@@ -63,7 +67,7 @@ public final class Knight extends Jucator implements Abilitati {
     }
 
     public void atacaK(final Jucator jucator, final float bonusRasa1, final float bonusRasa2) {
-        float dmg1, dmg2, dmg2periodic, bonusTeren = 1.0f, limita, procent;
+        float dmg1, dmg2, bonusTeren = 1.0f, limita, procent, dmgFaraBonusRasa = 0;
 
         if (this.getTipTeren() == 'L') {
            bonusTeren = Constante.PLUS15;
@@ -78,11 +82,17 @@ public final class Knight extends Jucator implements Abilitati {
 
         if (jucator.getHp() < limita) {
             dmg1 = jucator.getHp();
+            dmgFaraBonusRasa += dmg1;
         } else {
             dmg1 = this.abilitate1() * bonusTeren * bonusRasa1;
+            dmgFaraBonusRasa += Math.round(this.abilitate1() * bonusTeren);
         }
 
         dmg2 = this.abilitate2() * bonusTeren * bonusRasa2;
+        dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
+        jucator.setDmgFaraBonus(dmgFaraBonusRasa);
+        jucator.setDmgO(0);
+        jucator.setTimeDmgO(0);
         jucator.setParalizat(true);
         jucator.setTimpParalizat(1);
         jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));

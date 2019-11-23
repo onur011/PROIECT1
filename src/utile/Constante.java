@@ -24,6 +24,15 @@ public final class Constante {
     public static final float PLUS20 = 1.2f;
     public static final int D80 = 80;
     public static final float PLUS10 = 1.1f;
+    public static final float MINUS95 = 0.05f;
+    public static final float MINUS70 = 0.3f;
+    public static final float MINUS65 = 0.35f;
+    public static final float MINUS98 = 0.02f;
+    public static final float MINUS30 = 0.7f;
+    public static final float MINUS20 = 0.8f;
+    public static final float PLUS05 = 1.05f;
+    public static final float PLUS40 = 1.4f;
+    public static final float PLUS30 = 1.3f;
 
     private Constante() { }
 }
