@@ -39,8 +39,11 @@ public class InputReader {
 
         //Vector de jucatori.
         for (int i = 0; i < p; i++) {
-            jucatori.add(creareJucator.creazaJucator(fisier.nextWord(),
-                         fisier.nextInt(), fisier.nextInt()));
+            String str = fisier.nextWord();
+            int x = fisier.nextInt();
+            int y = fisier.nextInt();
+            jucatori.add(creareJucator.creazaJucator(str,
+                         x, y, harta.get(x).charAt(y)));
         }
         //Numar de runde.
         r = fisier.nextInt();
@@ -49,6 +52,8 @@ public class InputReader {
         for (int i = 0; i < r; i++) {
             runde.add(fisier.nextWord());
         }
+
+        fisier.close();
     }
 
     /**
@@ -99,4 +104,39 @@ public class InputReader {
     public ArrayList<String> getRunde() {
         return this.runde;
     }
+
+    /**
+     * Functia de afisarea.
+     * @param jucatorii jucatori
+     * @param in fisier citire
+     * @param out   fisier scriere
+     * @throws IOException a
+     */
+    public void afisare(final ArrayList<Jucator> jucatorii, final String in,
+                        final String out) throws IOException  {
+        FileSystem fisier = new FileSystem(in, out);
+        for (int i = 0; i < jucatorii.size(); i++) {
+            fisier.writeCharacter(jucatorii.get(i).getTipCaracter());
+            fisier.writeWord(" ");
+
+            if (jucatori.get(i).getMort()) {
+                fisier.writeWord("dead");
+                fisier.writeNewLine();
+                continue;
+            }
+
+            fisier.writeInt(jucatorii.get(i).getNivel());
+            fisier.writeWord(" ");
+            fisier.writeInt(jucatorii.get(i).getXp());
+            fisier.writeWord(" ");
+            fisier.writeInt(jucatorii.get(i).getHp());
+            fisier.writeWord(" ");
+            fisier.writeInt(jucatorii.get(i).getX());
+            fisier.writeWord(" ");
+            fisier.writeInt(jucatorii.get(i).getY());
+            fisier.writeNewLine();
+        }
+        fisier.close();
+    }
 }
+

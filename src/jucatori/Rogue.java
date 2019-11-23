@@ -4,13 +4,16 @@ import utile.Constante;
 
 public final class Rogue extends Jucator {
 
-    public Rogue(final int x, final int y) {
+    public Rogue(final int x, final int y, final char tip, final char type) {
         this.setX(x);
         this.setY(y);
         this.setHp(Constante.HPROGUE);
         this.setXp(0);
         this.setNivel(0);
         this.setMort(false);
+        this.setTipTeren(tip);
+        this.setHpInitial(Constante.HPROGUE);
+        this.setTipCaracter(type);
     }
     @Override
     public void incepeLupta(final Jucator jucator) {

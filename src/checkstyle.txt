@@ -1,2 +1,4 @@
 Starting audit...
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/InputReader.java:7:8: Unused import - java.io.FileWriter. [UnusedImports]
 Audit done.
+Checkstyle ends with 1 errors.

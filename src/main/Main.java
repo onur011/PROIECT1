@@ -42,6 +42,9 @@ public final class Main {
                     }
                 }
             }
+
         }
+
+        input.afisare(jucatori, args[0], args[1]);
     }
 }

@@ -3,13 +3,17 @@ package jucatori;
 import utile.Constante;
 
 public final class Knight extends Jucator {
-    public Knight(final int x, final int y) {
+
+    public Knight(final int x, final int y, final char tip, final char type) {
         this.setX(x);
         this.setY(y);
         this.setHp(Constante.HPKNIGHT);
         this.setXp(0);
         this.setNivel(0);
         this.setMort(false);
+        this.setTipTeren(tip);
+        this.setHpInitial(Constante.HPKNIGHT);
+        this.setTipCaracter(type);
     }
     @Override
     public void incepeLupta(final Jucator jucator) {

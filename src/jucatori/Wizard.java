@@ -3,13 +3,17 @@ package jucatori;
 import utile.Constante;
 
 public final class Wizard extends Jucator {
-    public Wizard(final int x, final int y) {
+
+    public Wizard(final int x, final int y, final char tip, final char type) {
         this.setX(x);
         this.setY(y);
         this.setHp(Constante.HPWIZZARD);
         this.setXp(0);
         this.setNivel(0);
         this.setMort(false);
+        this.setTipTeren(tip);
+        this.setHpInitial(Constante.HPWIZZARD);
+        this.setTipCaracter(type);
     }
     @Override
     public void incepeLupta(final Jucator jucator) {
