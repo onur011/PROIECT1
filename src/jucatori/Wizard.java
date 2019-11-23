@@ -14,6 +14,8 @@ public final class Wizard extends Jucator {
         this.setTipTeren(tip);
         this.setHpInitial(Constante.HPWIZZARD);
         this.setTipCaracter(type);
+        this.setParalizat(false);
+        this.setTimpParalizat(0);
     }
     @Override
     public void incepeLupta(final Jucator jucator) {

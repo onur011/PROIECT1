@@ -14,6 +14,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
         this.setTipTeren(tip);
         this.setHpInitial(Constante.HPPYROMANCER);
         this.setTipCaracter(type);
+        this.setParalizat(false);
+        this.setTimpParalizat(0);
     }
 
     @Override
@@ -23,7 +25,10 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Knight knight) {
+        knight.atacaK(this, Constante.PLUS10, Constante.MINUS10);
+        this.atacaP(knight, Constante.PLUS20);
 
+        this.dupaLupta(knight, Constante.D50, Constante.D80);
     }
 
     @Override
@@ -33,7 +38,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Pyromancer pyromancer) {
-        float dmg1j1, dmg2j1, dmg2j1periodic, bonusTeren = 1.0f, dmg1j2, dmg2j2, dmg2j2periodic;
+        /*float dmg1j1, dmg2j1, dmg2j1periodic, bonusTeren = 1.0f, dmg1j2, dmg2j2, dmg2j2periodic;
         if (this.getTipTeren() == 'V') {
             bonusTeren = Constante.PLUS25;
         }
@@ -57,13 +62,16 @@ public final class Pyromancer extends Jucator implements Abilitati {
                 * Constante.MINUS10;
         this.setDmgO(Math.round(dmg2j2periodic));
         this.setTimeDmgO(Constante.TIME2);
-        this.setDamage(Math.round(dmg1j2) + Math.round(dmg2j2));
+        this.setDamage(Math.round(dmg1j2) + Math.round(dmg2j2));*/
+        this.atacaP(pyromancer, Constante.MINUS10);
+        pyromancer.atacaP(this, Constante.MINUS10);
 
-        //Se calculeza hp fiecaruia dupa dmg.
+        this.dupaLupta(pyromancer, Constante.D50, Constante.D50);
+       /* //Se calculeza hp fiecaruia dupa dmg.
         this.iaDamage(pyromancer);
         //Se verifica daca fac un nou nivel;
         this.nouNivel(Constante.D50);
-        pyromancer.nouNivel(Constante.D50);
+        pyromancer.nouNivel(Constante.D50);*/
     }
 
     @Override
@@ -85,5 +93,26 @@ public final class Pyromancer extends Jucator implements Abilitati {
         int dmg;
         dmg = Constante.D150 + Constante.D20 * this.getNivel();
         return dmg;
+    }
+
+    /**Functia de atac al Pyromancer.
+     * @param jucator pe cine ataca.
+     * @param bonusRasa bonusul de rasa.
+     */
+    public void atacaP(final Jucator jucator, final float bonusRasa) {
+        float dmg1, dmg2, dmg2periodic, bonusTeren = 1.0f;
+        if (this.getTipTeren() == 'V') {
+            bonusTeren = Constante.PLUS25;
+        }
+        //Se calculeaza dmg dat de primul jucator celui de al doilea.
+        //Demage total este pus in variabila damage a celui care primeste dmg.
+        dmg1 = this.abilitate1() * bonusTeren * bonusRasa;
+
+        dmg2 = this.abilitate2() * bonusTeren * bonusRasa;
+        dmg2periodic = (Constante.D50 + Constante.D30 * this.getNivel()) * bonusTeren
+                * bonusRasa;
+        jucator.setDmgO(Math.round(dmg2periodic));
+        jucator.setTimeDmgO(Constante.TIME2);
+        jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));
     }
 }

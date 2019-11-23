@@ -16,6 +16,40 @@ public abstract class Jucator {
     private int timeDmgO;
     private int hpInitial;
     private char tipCaracter;
+    private boolean paralizat;
+    private int timpParalizat;
+
+    /**
+     * Returneaza hp initial al nivelului respectiv.
+     */
+    protected int getHpInitial() {
+        return this.hpInitial;
+    }
+    /**
+     * @param timp cate runde este paralizat.
+     */
+    public void setTimpParalizat(final int timp) {
+        this.timpParalizat = timp;
+    }
+    /**
+     * @param paralizat Seteaza daca jucatorul este imobilizat sau nu.
+     */
+    public void setParalizat(final boolean paralizat) {
+        this.paralizat = paralizat;
+    }
+    /**
+     * Functia de calcularea hp si nivel dupa batalie.
+     * @param jucator
+     * @param aux1
+     * @param aux2
+     */
+    public void dupaLupta(final Jucator jucator, final int aux1, final int aux2) {
+        //Se calculeza hp fiecaruia dupa dmg.
+        this.iaDamage(jucator);
+        //Se verifica daca fac un nou nivel;
+        this.nouNivel(aux1);
+        jucator.nouNivel(aux2);
+    }
 
     /**
      * @return returneaza tipul de jucator;
@@ -142,17 +176,15 @@ public abstract class Jucator {
     }
 
     /**
-     * Se da damage overtime si/sau se scade durata acestuia.
+     * Se da damage overtime si se scade durata acestuia.
      */
     public void overtime() {
-        if (this.timeDmgO != 0 && this.dmgO != 0) {
+        if (this.timeDmgO != 0) {
             this.hp -= this.dmgO;
+            this.timeDmgO--;
         }
         if (this.hp <= 0) {
             this.mort = true;
-        }
-        if (this.timeDmgO != 0) {
-            this.timeDmgO--;
         }
     }
     /**
@@ -160,15 +192,33 @@ public abstract class Jucator {
      * Se scade dmg overtime de la fiecare jucator, daca are.
      */
     public void cineLupta(final Jucator jucator) {
+
+        if (this.seLupta || jucator.seLupta) {
+            return;
+        }
+
         this.overtime();
         jucator.overtime();
+        this.paralizatRunda();
+        jucator.paralizatRunda();
 
-        if (this.x == jucator.x && this.y == jucator.y && !this.seLupta && !jucator.seLupta
-            && !this.mort && !jucator.mort) {
+        if (this.x == jucator.x && this.y == jucator.y && !this.mort && !jucator.mort) {
             this.incepeLupta(jucator);
             this.seLupta = true;
             jucator.seLupta = true;
 
+        }
+    }
+
+    /**
+     * Verifica daca jucatorul mai este imobilizat.
+     */
+    public void paralizatRunda() {
+        if (this.timpParalizat != 0) {
+            this.timpParalizat--;
+            if (this.timpParalizat == 0) {
+                this.paralizat = false;
+            }
         }
     }
 
@@ -244,6 +294,10 @@ public abstract class Jucator {
      * @param chr functia de mutare a jucatorilor.
      */
     public void muta(final char chr) {
+        if (this.paralizat) {
+            return;
+        }
+
         if (chr == 'U') {
             this.x -= 1;
         } else if (chr == 'D') {

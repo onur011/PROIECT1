@@ -14,6 +14,8 @@ public final class Rogue extends Jucator {
         this.setTipTeren(tip);
         this.setHpInitial(Constante.HPROGUE);
         this.setTipCaracter(type);
+        this.setParalizat(false);
+        this.setTimpParalizat(0);
     }
     @Override
     public void incepeLupta(final Jucator jucator) {
