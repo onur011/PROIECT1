@@ -80,10 +80,10 @@ public final class Rogue extends Jucator implements Abilitati {
             }
             runde = Constante.INT6;
         }
+        this.numarLovituri++;
 
         dmg1 = this.abilitate1() * critica * bonusTeren * bonusRasa1;
         dmgFaraBonusRasa += Math.round(this.abilitate1() * critica * bonusTeren);
-        this.numarLovituri++;
 
         dmg2 = this.abilitate2() * bonusTeren * bonusRasa2;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);

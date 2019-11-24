@@ -19,14 +19,7 @@ public abstract class Jucator {
     private boolean paralizat;
     private int timpParalizat;
     private float dmgFaraBonus;
-    private boolean dmgOluat;
 
-    /**
-     * @param dmg S etam daca jucaotrul a luat dmg overtime sau nu.
-     */
-    public void setDmgOluat(final boolean dmg) {
-        this.dmgOluat = dmg;
-    }
     /**
      * @param dmgFaraBonusRasa dmg primit fara bonus de rasa.
      */
@@ -205,7 +198,6 @@ public abstract class Jucator {
         if (this.timeDmgO != 0) {
             this.hp -= this.dmgO;
             this.timeDmgO--;
-            this.dmgOluat = true;
         }
         if (this.hp <= 0) {
             this.mort = true;
@@ -220,14 +212,6 @@ public abstract class Jucator {
         if (this.seLupta || jucator.seLupta) {
             return;
         }
-        if (!this.dmgOluat) {
-            this.overtime();
-        }
-        if (!jucator.dmgOluat) {
-            jucator.overtime();
-        }
-        this.paralizatRunda();
-        jucator.paralizatRunda();
 
         if (this.x == jucator.x && this.y == jucator.y && !this.mort && !jucator.mort) {
             this.incepeLupta(jucator);

@@ -32,9 +32,12 @@ public final class Main {
             for (j = 0; j < p; j++) {
                 jucatori.get(j).setDmgFaraBonus(0);
                 if (!jucatori.get(j).getMort()) {
-                    jucatori.get(j).setDmgOluat(false);
                     jucatori.get(j).setSeLupta(false);
                     jucatori.get(j).muta(runde.get(i).charAt(j));
+                    jucatori.get(j).setTipTeren(harta.get(jucatori.get(j).getX()).
+                                                charAt(jucatori.get(j).getY()));
+                    jucatori.get(j).overtime();
+                    jucatori.get(j).paralizatRunda();
                 }
             }
 
