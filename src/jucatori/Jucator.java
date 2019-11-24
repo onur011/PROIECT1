@@ -19,7 +19,14 @@ public abstract class Jucator {
     private boolean paralizat;
     private int timpParalizat;
     private float dmgFaraBonus;
+    private boolean dmgOluat;
 
+    /**
+     * @param dmg S etam daca jucaotrul a luat dmg overtime sau nu.
+     */
+    public void setDmgOluat(final boolean dmg) {
+        this.dmgOluat = dmg;
+    }
     /**
      * @param dmgFaraBonusRasa dmg primit fara bonus de rasa.
      */
@@ -135,8 +142,10 @@ public abstract class Jucator {
             xpj2 += Math.max(0, Constante.MAXXP - (jucator.nivel - this.nivel)
                                          * Constante.NIVEL);
         }
-        this.setXp(xpj1);
-        jucator.setXp(xpj2);
+        this.xp = xpj1;
+        jucator.xp = xpj2;
+        this.damage = 0;
+        jucator.damage = 0;
     }
     /**
      * @return Cate runde dureaza dmgO.
@@ -196,6 +205,7 @@ public abstract class Jucator {
         if (this.timeDmgO != 0) {
             this.hp -= this.dmgO;
             this.timeDmgO--;
+            this.dmgOluat = true;
         }
         if (this.hp <= 0) {
             this.mort = true;
@@ -210,9 +220,12 @@ public abstract class Jucator {
         if (this.seLupta || jucator.seLupta) {
             return;
         }
-
-        this.overtime();
-        jucator.overtime();
+        if (!this.dmgOluat) {
+            this.overtime();
+        }
+        if (!jucator.dmgOluat) {
+            jucator.overtime();
+        }
         this.paralizatRunda();
         jucator.paralizatRunda();
 

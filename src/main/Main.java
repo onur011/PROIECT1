@@ -32,6 +32,7 @@ public final class Main {
             for (j = 0; j < p; j++) {
                 jucatori.get(j).setDmgFaraBonus(0);
                 if (!jucatori.get(j).getMort()) {
+                    jucatori.get(j).setDmgOluat(false);
                     jucatori.get(j).setSeLupta(false);
                     jucatori.get(j).muta(runde.get(i).charAt(j));
                 }
