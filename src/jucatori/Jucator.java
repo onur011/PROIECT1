@@ -100,11 +100,11 @@ public abstract class Jucator {
             return;
         }
         if (this.xp >= Constante.NIVELXP) {
-            this.nivel = (this.xp - Constante.NIVELXP) / Constante.D50;
+            this.nivel = (this.xp - Constante.MAXXP) / Constante.D50;
         }
 
         if (nivelInitial != this.nivel) {
-            this.hp = this.hpInitial + hpNivelNou;
+            this.hp = this.hpInitial + hpNivelNou * (this.nivel - nivelInitial);
             this.hpInitial = this.hp;
         }
     }
@@ -220,7 +220,6 @@ public abstract class Jucator {
             this.incepeLupta(jucator);
             this.seLupta = true;
             jucator.seLupta = true;
-
         }
     }
 

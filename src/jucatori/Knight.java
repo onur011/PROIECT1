@@ -32,7 +32,10 @@ public final class Knight extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Rogue rogue) {
+        rogue.atacaR(this, Constante.MINUS10, Constante.MINUS20);
+        this.atacaK(rogue, Constante.PLUS15, Constante.MINUS20);
 
+        this.dupaLupta(rogue, Constante.D80, Constante.D40);
     }
 
     @Override

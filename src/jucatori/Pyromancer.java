@@ -33,7 +33,10 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Rogue rogue) {
+        rogue.atacaR(this, Constante.PLUS25, Constante.PLUS20);
+        this.atacaP(rogue, Constante.MINUS20);
 
+        this.dupaLupta(rogue, Constante.D50, Constante.D40);
     }
 
     @Override

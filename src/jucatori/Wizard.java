@@ -32,6 +32,10 @@ public final class Wizard extends Jucator {
 
     @Override
     public void lupta(final Rogue rogue) {
+        rogue.atacaR(this, Constante.PLUS25, Constante.PLUS25);
+        this.atacaW(rogue, Constante.MINUS20, Constante.PLUS20);
+
+        this.dupaLupta(rogue, Constante.D30, Constante.D40);
     }
 
     @Override

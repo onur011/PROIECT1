@@ -31,13 +31,15 @@ public final class Main {
             //Mutarea jucatorilor si declaram ca nu sunt in lupta
             for (j = 0; j < p; j++) {
                 jucatori.get(j).setDmgFaraBonus(0);
-                jucatori.get(j).setSeLupta(false);
-                jucatori.get(j).muta(runde.get(i).charAt(j));
+                if (!jucatori.get(j).getMort()) {
+                    jucatori.get(j).setSeLupta(false);
+                    jucatori.get(j).muta(runde.get(i).charAt(j));
+                }
             }
 
             //Selectam luptele intre jucatori.
             for (j = 0; j < p; j++) {
-                for (k = 0; k < p; k++) {
+                for (k = j; k < p; k++) {
                     if (j != k) {
                         jucatori.get(j).cineLupta(jucatori.get(k));
                     }

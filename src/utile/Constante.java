@@ -33,6 +33,11 @@ public final class Constante {
     public static final float PLUS05 = 1.05f;
     public static final float PLUS40 = 1.4f;
     public static final float PLUS30 = 1.3f;
+    public static final int INT3 = 3;
+    public static final float PLUS50 = 1.5f;
+    public static final int D10 = 10;
+    public static final int INT6 = 6;
+    public static final int D40 = 40;
 
     private Constante() { }
 }
