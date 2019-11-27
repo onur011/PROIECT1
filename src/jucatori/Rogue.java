@@ -7,12 +7,12 @@ public final class Rogue extends Jucator implements Abilitati {
     public Rogue(final int x, final int y, final char tip, final char type) {
         this.setX(x);
         this.setY(y);
-        this.setHp(Constante.HPROGUE);
+        this.setHp(Constante.HP_INITIAL_R);
         this.setXp(0);
         this.setNivel(0);
         this.setMort(false);
         this.setTipTeren(tip);
-        this.setHpInitial(Constante.HPROGUE);
+        this.setHpInitial(Constante.HP_INITIAL_R);
         this.setTipCaracter(type);
         this.setParalizat(false);
         this.setTimpParalizat(0);
@@ -25,60 +25,61 @@ public final class Rogue extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Knight knight) {
-        this.atacaR(knight, Constante.MINUS10, Constante.MINUS20);
-        knight.atacaK(this, Constante.PLUS15, Constante.MINUS20);
+        this.atacaR(knight, Constante.R_LUPTA_K_ABL_1, Constante.R_LUPTA_K_ABL_2);
+        knight.atacaK(this, Constante.K_LUPTA_R_ABL_1, Constante.K_LUPTA_R_ABL_2);
 
-        this.dupaLupta(knight, Constante.D40, Constante.D80);
+        this.dupaLupta(knight, Constante.HP_NIVEL_R, Constante.HP_NIVEL_K);
     }
 
     @Override
     public void lupta(final Rogue rogue) {
-        this.atacaR(rogue, Constante.PLUS20, Constante.MINUS10);
-        rogue.atacaR(this, Constante.PLUS20, Constante.MINUS10);
+        this.atacaR(rogue, Constante.R_LUPTA_R_ABL_1, Constante.R_LUPTA_R_ABL_2);
+        rogue.atacaR(this, Constante.R_LUPTA_R_ABL_1, Constante.R_LUPTA_R_ABL_2);
 
-        this.dupaLupta(rogue, Constante.D40, Constante.D40);
+        this.dupaLupta(rogue, Constante.HP_NIVEL_R, Constante.HP_NIVEL_R);
     }
 
     @Override
     public void lupta(final Pyromancer pyromancer) {
-        this.atacaR(pyromancer, Constante.PLUS25, Constante.PLUS20);
-        pyromancer.atacaP(this, Constante.MINUS20);
+        this.atacaR(pyromancer, Constante.R_LUPTA_P_ABL_1, Constante.R_LUPTA_P_ABL_2);
+        pyromancer.atacaP(this, Constante.P_LUPTA_R);
 
-        this.dupaLupta(pyromancer, Constante.D40, Constante.D50);
+        this.dupaLupta(pyromancer, Constante.HP_NIVEL_R, Constante.HP_NIVEL_P);
     }
 
     @Override
     public void lupta(final Wizard wizard) {
-        this.atacaR(wizard, Constante.PLUS25, Constante.PLUS25);
-        wizard.atacaW(this, Constante.MINUS20, Constante.PLUS20);
+        this.atacaR(wizard, Constante.R_LUPTA_W_ABL_1, Constante.R_LUPTA_P_ABL_2);
+        wizard.atacaW(this, Constante.W_LUPTA_R_ABL_1, Constante.W_LUPTA_R_ABL_2);
 
-        this.dupaLupta(wizard, Constante.D40, Constante.D30);
+        this.dupaLupta(wizard, Constante.HP_NIVEL_R, Constante.HP_NIVEL_W);
     }
 
     @Override
     public int abilitate1() {
         int dmg;
-        dmg = Constante.MAXXP + this.getNivel() * Constante.D20;
+        dmg = Constante.DMG_ABL_1_R + this.getNivel() * Constante.DMG_NIVEL_ABL_1_R;
         return dmg;
     }
 
     @Override
     public int abilitate2() {
         int dmg;
-        dmg = Constante.NIVEL + this.getNivel() * Constante.D10;
+        dmg = Constante.DMG_ABL_2_R + this.getNivel() * Constante.DMG_NIVEL_ABL_2_R;
         return dmg;
     }
 
     public void atacaR(final Jucator jucator, final float bonusRasa1, final float bonusRasa2) {
-        float dmg1, dmg2, bonusTeren = 1.0f, limita, procent, dmgFaraBonusRasa = 0, critica = 1f;
-        int runde = Constante.INT3;
+        float dmg1, dmg2, bonusTeren = Constante.BONUS_TEREN_NEUTRU, limita, procent,
+        dmgFaraBonusRasa = Constante.ZERO, critica = Constante.CRITICA_NORMALA_R;
+        int runde = Constante.OVERTIME_TIMP_R;
 
         if (this.getTipTeren() == 'W') {
-            bonusTeren = Constante.PLUS15;
-            if (this.numarLovituri % Constante.INT3 == 0) {
-                critica = Constante.PLUS50;
+            bonusTeren = Constante.BONUS_TEREN_R;
+            if (this.numarLovituri % Constante.CRITICA_PER_RUNDE == 0) {
+                critica = Constante.CRITICA_BONUS_R;
             }
-            runde = Constante.INT6;
+            runde = Constante.OVERTIME_TIMP_BONUS_R;
         }
         this.numarLovituri++;
 

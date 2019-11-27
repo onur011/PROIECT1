@@ -8,7 +8,6 @@ public abstract class Jucator {
     private int x;
     private int y;
     private int nivel;
-    private boolean seLupta;
     private boolean mort;
     private int damage;
     private char tipTeren;
@@ -53,16 +52,16 @@ public abstract class Jucator {
     }
     /**
      * Functia de calcularea hp si nivel dupa batalie.
-     * @param jucator
-     * @param aux1
-     * @param aux2
+     * @param jucator jucatorul cu care se lupta.
+     * @param hpNivel1 hp per nivel pentru jucatorul 1.
+     * @param hpNivel2 hp per nivel pentru jucatorul 2.
      */
-    public void dupaLupta(final Jucator jucator, final int aux1, final int aux2) {
+    public void dupaLupta(final Jucator jucator, final int hpNivel1, final int hpNivel2) {
         //Se calculeza hp fiecaruia dupa dmg.
         this.iaDamage(jucator);
         //Se verifica daca fac un nou nivel;
-        this.nouNivel(aux1);
-        jucator.nouNivel(aux2);
+        this.nouNivel(hpNivel1);
+        jucator.nouNivel(hpNivel2);
     }
 
     /**
@@ -96,28 +95,31 @@ public abstract class Jucator {
      */
     public void nouNivel(final int hpNivelNou) {
         int nivelInitial = this.nivel;
+        //Daca jucatorul moare, nu ii mai crestem nivelul
         if (this.mort) {
             return;
         }
-        if (this.xp >= Constante.NIVELXP) {
-            this.nivel = (this.xp - Constante.MAXXP) / Constante.D50;
+        //Se calculeaza nivelul actual al jucatorului
+        if (this.xp >= Constante.XP_NIVEL_0) {
+            this.nivel = (this.xp - Constante.XP_NIVEL_0) / Constante.XP_PER_NIVEL;
         }
-
+        //Se calculeaza hp jucatorului, in cazul in care acesta a avansat in nivel.
         if (nivelInitial != this.nivel) {
             this.hp = this.hpInitial + hpNivelNou * (this.nivel - nivelInitial);
             this.hpInitial = this.hp;
         }
     }
     /**
-     * @param jucator a
+     * @param jucator jucatorul care ia dmg.
      * Functia de calculare a dmg luat de 2 jucatori care se lupta
      * Se adauga si ex corespunzator daca unul dintre ei moare.
      */
     public void iaDamage(final Jucator jucator) {
         int xpj1 = this.xp, xpj2 = jucator.xp;
+        //Se scade dmg primit de fiecare jucator
         this.hp -= this.damage;
         jucator.hp -= jucator.damage;
-
+        //Se verifica daca sunt morti.
         if (this.hp <= 0) {
             this.mort = true;
         }
@@ -125,20 +127,21 @@ public abstract class Jucator {
         if (jucator.hp <= 0) {
             jucator.mort = true;
         }
-
+        //Daca unul este mort,se calculeaza xp pentru celalalt.
         if (jucator.mort) {
-            xpj1 += Math.max(0, Constante.MAXXP - (this.nivel - jucator.nivel)
-                                      * Constante.NIVEL);
+            xpj1 += Math.max(0, Constante.XP - (this.nivel - jucator.nivel)
+                                      * Constante.XP_NIVEL);
         }
 
         if (this.mort) {
-            xpj2 += Math.max(0, Constante.MAXXP - (jucator.nivel - this.nivel)
-                                         * Constante.NIVEL);
+            xpj2 += Math.max(0, Constante.XP - (jucator.nivel - this.nivel)
+                                         * Constante.XP_NIVEL);
         }
+        //Se adauga xp si dmg primit este trecut pe 0;
         this.xp = xpj1;
         jucator.xp = xpj2;
-        this.damage = 0;
-        jucator.damage = 0;
+        this.damage = (int) Constante.ZERO;
+        jucator.damage = (int) Constante.ZERO;
     }
     /**
      * @return Cate runde dureaza dmgO.
@@ -146,6 +149,7 @@ public abstract class Jucator {
     public int getTime() {
         return this.timeDmgO;
     }
+
     /**
      * @param dmg Se seteaza damege luat de jucator.
      */
@@ -185,13 +189,6 @@ public abstract class Jucator {
     }
 
     /**
-     * @param bool setam daca un jucator s-a luptat sau nu.
-     */
-    public void setSeLupta(final boolean bool) {
-        this.seLupta = bool;
-    }
-
-    /**
      * Se da damage overtime si se scade durata acestuia.
      */
     public void overtime() {
@@ -205,18 +202,11 @@ public abstract class Jucator {
     }
     /**
      * @param jucator Se decide daca cei doi jucatori se vor lupta.
-     * Se scade dmg overtime de la fiecare jucator, daca are.
      */
     public void cineLupta(final Jucator jucator) {
-
-        if (this.seLupta || jucator.seLupta) {
-            return;
-        }
-
+        //Se lupta doar daca se afla pe aceeasi pozitie si nu sunt morti.
         if (this.x == jucator.x && this.y == jucator.y && !this.mort && !jucator.mort) {
             this.incepeLupta(jucator);
-            this.seLupta = true;
-            jucator.seLupta = true;
         }
     }
 
@@ -224,9 +214,9 @@ public abstract class Jucator {
      * Verifica daca jucatorul mai este imobilizat.
      */
     public void paralizatRunda() {
-        if (this.timpParalizat != 0) {
+        if (this.timpParalizat != Constante.ZERO) {
             this.timpParalizat--;
-            if (this.timpParalizat == 0) {
+            if (this.timpParalizat == Constante.ZERO) {
                 this.paralizat = false;
             }
         }

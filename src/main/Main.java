@@ -1,6 +1,5 @@
 package main;
 
-
 import jucatori.Jucator;
 
 import java.io.IOException;
@@ -28,30 +27,32 @@ public final class Main {
 
         //Runde joc
         for (i = 0; i < r; i++) {
-            //Mutarea jucatorilor si declaram ca nu sunt in lupta
+
             for (j = 0; j < p; j++) {
+                //Setam dmg fara bonus pe 0
                 jucatori.get(j).setDmgFaraBonus(0);
+                //Daca jucatorul nu este mort
                 if (!jucatori.get(j).getMort()) {
-                    jucatori.get(j).setSeLupta(false);
+                    //Se muta jucatorii
                     jucatori.get(j).muta(runde.get(i).charAt(j));
+                    //Se modifica tipul de teren pe care este jucatorul, dupa mutare.
                     jucatori.get(j).setTipTeren(harta.get(jucatori.get(j).getX()).
                                                 charAt(jucatori.get(j).getY()));
+                    //Se scade dmf de overtime
                     jucatori.get(j).overtime();
+                    //Se verifica cat timp este jucatorul paralizat
                     jucatori.get(j).paralizatRunda();
                 }
             }
 
             //Selectam luptele intre jucatori.
-            for (j = 0; j < p; j++) {
-                for (k = j; k < p; k++) {
-                    if (j != k) {
-                        jucatori.get(j).cineLupta(jucatori.get(k));
-                    }
+            for (j = 0; j < p - 1; j++) {
+                for (k = j + 1; k < p; k++) {
+                    jucatori.get(j).cineLupta(jucatori.get(k));
                 }
             }
-
         }
-
-        input.afisare(jucatori, args[0], args[1]);
+        //Se afiseaza
+       input.afisare(jucatori, args[0], args[1]);
     }
 }

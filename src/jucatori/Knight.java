@@ -7,12 +7,12 @@ public final class Knight extends Jucator implements Abilitati {
     public Knight(final int x, final int y, final char tip, final char type) {
         this.setX(x);
         this.setY(y);
-        this.setHp(Constante.HPKNIGHT);
+        this.setHp(Constante.HP_INITIAL_K);
         this.setXp(0);
         this.setNivel(0);
         this.setMort(false);
         this.setTipTeren(tip);
-        this.setHpInitial(Constante.HPKNIGHT);
+        this.setHpInitial(Constante.HP_INITIAL_K);
         this.setTipCaracter(type);
         this.setParalizat(false);
         this.setTimpParalizat(0);
@@ -24,61 +24,62 @@ public final class Knight extends Jucator implements Abilitati {
 
     @Override
     public void lupta(final Knight knight) {
-        this.atacaK(knight, 1, Constante.PLUS20);
-        knight.atacaK(this, 1, Constante.PLUS20);
+        this.atacaK(knight, Constante.K_LUPTA_K_ABL_1, Constante.K_LUPTA_K_ABL_2);
+        knight.atacaK(this, Constante.K_LUPTA_K_ABL_1, Constante.K_LUPTA_K_ABL_2);
 
-        this.dupaLupta(knight, Constante.D80, Constante.D80);
+        this.dupaLupta(knight, Constante.HP_NIVEL_K, Constante.HP_NIVEL_K);
     }
 
     @Override
     public void lupta(final Rogue rogue) {
-        rogue.atacaR(this, Constante.MINUS10, Constante.MINUS20);
-        this.atacaK(rogue, Constante.PLUS15, Constante.MINUS20);
+        rogue.atacaR(this, Constante.R_LUPTA_K_ABL_1, Constante.R_LUPTA_K_ABL_2);
+        this.atacaK(rogue, Constante.K_LUPTA_R_ABL_1, Constante.K_LUPTA_R_ABL_2);
 
-        this.dupaLupta(rogue, Constante.D80, Constante.D40);
+        this.dupaLupta(rogue, Constante.HP_NIVEL_K, Constante.HP_NIVEL_R);
     }
 
     @Override
     public void lupta(final Pyromancer pyromancer) {
-        this.atacaK(pyromancer, Constante.PLUS10, Constante.MINUS10);
-        pyromancer.atacaP(this, Constante.PLUS20);
+        this.atacaK(pyromancer, Constante.K_LUPTA_P_ABL_1, Constante.K_LUPTA_P_ABL_2);
+        pyromancer.atacaP(this, Constante.P_LUPTA_K);
 
-        this.dupaLupta(pyromancer, Constante.D80, Constante.D50);
+        this.dupaLupta(pyromancer, Constante.HP_NIVEL_K, Constante.HP_NIVEL_P);
     }
 
     @Override
     public void lupta(final Wizard wizard) {
-        this.atacaK(wizard, Constante.MINUS20, Constante.PLUS05);
-        wizard.atacaW(this, Constante.PLUS20, Constante.PLUS40);
+        this.atacaK(wizard, Constante.K_LUPTA_W_ABL_1, Constante.K_LUPTA_W_ABL_2);
+        wizard.atacaW(this, Constante.W_LUPTA_K_ABL_1, Constante.W_LUPTA_K_ABL_2);
 
-        this.dupaLupta(wizard, Constante.D80, Constante.D30);
+        this.dupaLupta(wizard, Constante.HP_NIVEL_K, Constante.HP_NIVEL_W);
 
     }
     //Execute
     @Override
     public int abilitate1() {
         int dmg;
-        dmg = Constante.MAXXP + this.getNivel() * Constante.D30;
+        dmg = Constante.DMG_ABL_1_K + this.getNivel() * Constante.DMG_NIVEL_ABL_1_K;
         return dmg;
     }
 
     @Override
     public int abilitate2() {
         int dmg;
-        dmg = Constante.D100 + this.getNivel() * Constante.NIVEL;
+        dmg = Constante.DMG_ABL_2_K + this.getNivel() * Constante.DMG_NIVEL_ABL_2_K;
         return dmg;
     }
 
     public void atacaK(final Jucator jucator, final float bonusRasa1, final float bonusRasa2) {
-        float dmg1, dmg2, bonusTeren = 1.0f, limita, procent, dmgFaraBonusRasa = 0;
+        float dmg1, dmg2, bonusTeren = Constante.BONUS_TEREN_NEUTRU, limita, procent,
+        dmgFaraBonusRasa = Constante.ZERO;
 
         if (this.getTipTeren() == 'L') {
-           bonusTeren = Constante.PLUS15;
+           bonusTeren = Constante.BONUS_TEREN_K;
         }
 
-        procent = Constante.MINUS80 + this.getNivel() * Constante.MINUS99;
-        if (procent > Constante.MINUS60) {
-            procent = Constante.MINUS60;
+        procent = Constante.PROCENT_K + this.getNivel() * Constante.PROCENT_NIVEL_K;
+        if (procent > Constante.PROCENT_MAX_K) {
+            procent = Constante.PROCENT_MAX_K;
         }
 
         limita = procent * jucator.getHpInitial();
@@ -94,10 +95,10 @@ public final class Knight extends Jucator implements Abilitati {
         dmg2 = this.abilitate2() * bonusTeren * bonusRasa2;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
-        jucator.setDmgO(0);
-        jucator.setTimeDmgO(0);
+        jucator.setDmgO((int) Constante.ZERO);
+        jucator.setTimeDmgO((int) Constante.ZERO);
         jucator.setParalizat(true);
-        jucator.setTimpParalizat(1);
+        jucator.setTimpParalizat(Constante.PARALIZAT_TIMP_K);
         jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));
     }
 }
