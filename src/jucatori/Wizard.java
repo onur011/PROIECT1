@@ -4,6 +4,7 @@ import utile.Constante;
 
 public final class Wizard extends Jucator {
 
+    //Constructor Wizard
     public Wizard(final int x, final int y, final char tip, final char type) {
         this.setX(x);
         this.setY(y);
@@ -22,6 +23,7 @@ public final class Wizard extends Jucator {
         jucator.lupta(this);
     }
 
+    //Wizard vs Knight
     @Override
     public void lupta(final Knight knight) {
         knight.atacaK(this, Constante.K_LUPTA_W_ABL_1, Constante.K_LUPTA_W_ABL_2);
@@ -30,6 +32,7 @@ public final class Wizard extends Jucator {
         this.dupaLupta(knight, Constante.HP_NIVEL_W, Constante.HP_NIVEL_K);
     }
 
+    //Wizard vs Rogue
     @Override
     public void lupta(final Rogue rogue) {
         rogue.atacaR(this, Constante.R_LUPTA_W_ABL_1, Constante.R_LUPTA_W_ABL_2);
@@ -38,6 +41,7 @@ public final class Wizard extends Jucator {
         this.dupaLupta(rogue, Constante.HP_NIVEL_W, Constante.HP_NIVEL_R);
     }
 
+    //Wizard vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) {
         pyromancer.atacaP(this, Constante.P_LUPTA_W);
@@ -46,6 +50,7 @@ public final class Wizard extends Jucator {
         this.dupaLupta(pyromancer, Constante.HP_NIVEL_W, Constante.HP_NIVEL_P);
     }
 
+    //Wizard vs Wizard
     @Override
     public void lupta(final Wizard wizard) {
         wizard.atacaW(this, Constante.W_LUPTA_W_ABL_1, Constante.W_LUPTA_W_ABL_2);
@@ -54,17 +59,22 @@ public final class Wizard extends Jucator {
         this.dupaLupta(wizard, Constante.HP_NIVEL_W, Constante.HP_NIVEL_W);
     }
 
+    //Functia in care atacatorul este Wizard
     public void atacaW(final Jucator jucator, final float bonusRasa1, final float bonusRasa2) {
         float dmg1, dmg2 = Constante.ZERO, procent, procent2,
         bonusTeren = Constante.BONUS_TEREN_NEUTRU;
 
+        //Bonus teren
         if (this.getTipTeren() == 'D') {
             bonusTeren = Constante.BONUS_TEREN_W;
         }
+
+        //Drain
         procent = Constante.PROCENT_W + this.getNivel() * Constante.PROCENT_NIVEL_W;
         dmg1 = procent * Math.min(Constante.PROCENT_ABL_1_W * jucator.getHpInitial(),
         jucator.getHp()) * bonusTeren * bonusRasa1;
 
+        //Deflect (nu se foloseste cand victima este un Wizard)
         if (jucator.getTipCaracter() != 'W') {
             procent2 = Constante.PROCENT_ABL_2_W + this.getNivel()
             * Constante.PROCENT_ALB_2_NIVEL_W;
@@ -74,6 +84,7 @@ public final class Wizard extends Jucator {
             dmg2 = procent2 * this.getDmgFaraBonus() * bonusTeren * bonusRasa2;
         }
 
+        //Se adauga dmg pe care trebuie sa il ia jucator
         jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));
     }
 }

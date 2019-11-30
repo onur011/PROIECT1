@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 //Se reallizeaza citirea din fisier.
-public class InputReader {
+public class CitireIntrare {
     private int n, m;
     private ArrayList<String> harta = new ArrayList<String>();
     private int p;
@@ -20,7 +20,6 @@ public class InputReader {
      * Functia de citire a fisierului de intrare.
      * @param in Fisier de input
      * @param out Fisier de output
-     * @throws IOException .
      */
     public void citire(final String in, final String out) throws IOException {
         CreareJucator creareJucator = CreareJucator.getInstance();
@@ -110,7 +109,6 @@ public class InputReader {
      * @param jucatorii jucatori
      * @param in fisier citire
      * @param out   fisier scriere
-     * @throws IOException a
      */
     public void afisare(final ArrayList<Jucator> jucatorii, final String in,
                         final String out) throws IOException  {

@@ -4,6 +4,7 @@ import utile.Constante;
 
 public final class Knight extends Jucator implements Abilitati {
 
+    //Constructor Knight
     public Knight(final int x, final int y, final char tip, final char type) {
         this.setX(x);
         this.setY(y);
@@ -22,6 +23,7 @@ public final class Knight extends Jucator implements Abilitati {
         jucator.lupta(this);
     }
 
+    //Knight vs Knight
     @Override
     public void lupta(final Knight knight) {
         this.atacaK(knight, Constante.K_LUPTA_K_ABL_1, Constante.K_LUPTA_K_ABL_2);
@@ -30,14 +32,16 @@ public final class Knight extends Jucator implements Abilitati {
         this.dupaLupta(knight, Constante.HP_NIVEL_K, Constante.HP_NIVEL_K);
     }
 
+    //Knight vs Rouge
     @Override
     public void lupta(final Rogue rogue) {
-        rogue.atacaR(this, Constante.R_LUPTA_K_ABL_1, Constante.R_LUPTA_K_ABL_2);
         this.atacaK(rogue, Constante.K_LUPTA_R_ABL_1, Constante.K_LUPTA_R_ABL_2);
+        rogue.atacaR(this, Constante.R_LUPTA_K_ABL_1, Constante.R_LUPTA_K_ABL_2);
 
         this.dupaLupta(rogue, Constante.HP_NIVEL_K, Constante.HP_NIVEL_R);
     }
 
+    //Knight vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) {
         this.atacaK(pyromancer, Constante.K_LUPTA_P_ABL_1, Constante.K_LUPTA_P_ABL_2);
@@ -46,6 +50,7 @@ public final class Knight extends Jucator implements Abilitati {
         this.dupaLupta(pyromancer, Constante.HP_NIVEL_K, Constante.HP_NIVEL_P);
     }
 
+    //Knight vs Wizard
     @Override
     public void lupta(final Wizard wizard) {
         this.atacaK(wizard, Constante.K_LUPTA_W_ABL_1, Constante.K_LUPTA_W_ABL_2);
@@ -54,7 +59,7 @@ public final class Knight extends Jucator implements Abilitati {
         this.dupaLupta(wizard, Constante.HP_NIVEL_K, Constante.HP_NIVEL_W);
 
     }
-    //Execute
+    //Execute dmg
     @Override
     public int abilitate1() {
         int dmg;
@@ -62,6 +67,7 @@ public final class Knight extends Jucator implements Abilitati {
         return dmg;
     }
 
+    //Slam dmg
     @Override
     public int abilitate2() {
         int dmg;
@@ -69,21 +75,23 @@ public final class Knight extends Jucator implements Abilitati {
         return dmg;
     }
 
+    //Functia in care atacatorul este Knight
     public void atacaK(final Jucator jucator, final float bonusRasa1, final float bonusRasa2) {
         float dmg1, dmg2, bonusTeren = Constante.BONUS_TEREN_NEUTRU, limita, procent,
         dmgFaraBonusRasa = Constante.ZERO;
 
+        //Bonusul de teren
         if (this.getTipTeren() == 'L') {
            bonusTeren = Constante.BONUS_TEREN_K;
         }
-
+        //Se calculeaza procent
         procent = Constante.PROCENT_K + this.getNivel() * Constante.PROCENT_NIVEL_K;
         if (procent > Constante.PROCENT_MAX_K) {
             procent = Constante.PROCENT_MAX_K;
         }
 
         limita = procent * jucator.getHpInitial();
-
+        //Execute
         if (jucator.getHp() < limita) {
             dmg1 = jucator.getHp();
             dmgFaraBonusRasa += dmg1;
@@ -91,7 +99,7 @@ public final class Knight extends Jucator implements Abilitati {
             dmg1 = this.abilitate1() * bonusTeren * bonusRasa1;
             dmgFaraBonusRasa += Math.round(this.abilitate1() * bonusTeren);
         }
-
+        //Slam
         dmg2 = this.abilitate2() * bonusTeren * bonusRasa2;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
@@ -99,6 +107,8 @@ public final class Knight extends Jucator implements Abilitati {
         jucator.setTimeDmgO((int) Constante.ZERO);
         jucator.setParalizat(true);
         jucator.setTimpParalizat(Constante.PARALIZAT_TIMP_K);
+
+         //Se adauga dmg pe care trebuie sa il ia jucator
         jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));
     }
 }

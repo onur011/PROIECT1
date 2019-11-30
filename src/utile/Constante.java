@@ -39,7 +39,6 @@ public final class Constante {
     public static final float PROCENT_MAX_K = 0.4f;
     public static final int PARALIZAT_TIMP_K = 1;
 
-
     //Constante Rouge
     public static final float R_LUPTA_P_ABL_1 = 1.25f;
     public static final float R_LUPTA_P_ABL_2 = 1.2f;

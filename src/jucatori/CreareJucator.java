@@ -11,7 +11,7 @@ public final class CreareJucator {
         }
         return instance;
     }
-
+    //Se creaza jucatorul in functie de tipul sau.
     public Jucator creazaJucator(final String type, final int x, final int y, final char tip) {
         switch (type) {
             case "K": return new Knight(x, y, tip, type.charAt(0));
