@@ -309,9 +309,14 @@ public abstract class Jucator {
         }
     }
 
+    public  void inceputDeRunda() {
+
+    }
+
     public abstract void incepeLupta(Jucator jucator);
     public abstract void lupta(Knight knight);
     public abstract void lupta(Rogue rogue);
     public abstract void lupta(Pyromancer pyromancer);
     public abstract void lupta(Wizard wizard);
+
 }

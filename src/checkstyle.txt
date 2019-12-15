@@ -1,2 +1,13 @@
 Starting audit...
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Main.java:4:1: Redundant import from the same package - main.Harta. [RedundantImport]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:10:30: Variable 'harta' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:12:11: Parameter in should be final. [FinalParameters]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:12:22: Parameter out should be final. [FinalParameters]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:14:15: ',' is not followed by whitespace. [WhitespaceAfter]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:26:37: Parameter in should be final. [FinalParameters]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:26:48: Parameter out should be final. [FinalParameters]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:27:29: ')' is preceded with whitespace. [ParenPad]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:27:31: '{' is not preceded with whitespace. [WhitespaceAround]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/CitireIntrare.java:33:15: 'harta' hides a field. [HiddenField]
 Audit done.
+Checkstyle ends with 10 errors.

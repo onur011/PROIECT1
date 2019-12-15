@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class CitireIntrare {
     private int n, m;
     private ArrayList<String> harta = new ArrayList<String>();
+    private ArrayList<String> aux = new ArrayList<String>();
     private int p;
     private ArrayList<Jucator> jucatori = new ArrayList<Jucator>();
     private int r;
@@ -29,9 +30,10 @@ public class CitireIntrare {
         n = fisier.nextInt();
         m = fisier.nextInt();
 
-        //Tipul de suprafata.
+        Harta harta = Harta.getInstance(in, out);
+        //Pentru a sari peste harta
         for (int i = 0; i < n; i++) {
-            harta.add(fisier.nextWord());
+            aux.add(fisier.nextWord());
         }
         //Numarul de jucatori.
         p = fisier.nextInt();
@@ -42,7 +44,7 @@ public class CitireIntrare {
             int x = fisier.nextInt();
             int y = fisier.nextInt();
             jucatori.add(creareJucator.creazaJucator(str,
-                         x, y, harta.get(x).charAt(y)));
+                    x, y, harta.harta.get(x).charAt(y)));
         }
         //Numar de runde.
         r = fisier.nextInt();
@@ -137,4 +139,3 @@ public class CitireIntrare {
         fisier.close();
     }
 }
-
