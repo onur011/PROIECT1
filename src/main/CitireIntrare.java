@@ -10,7 +10,6 @@ import java.util.ArrayList;
 //Se reallizeaza citirea din fisier.
 public class CitireIntrare {
     private int n, m;
-    private ArrayList<String> harta = new ArrayList<String>();
     private ArrayList<String> aux = new ArrayList<String>();
     private int p;
     private ArrayList<Jucator> jucatori = new ArrayList<Jucator>();
@@ -44,7 +43,7 @@ public class CitireIntrare {
             int x = fisier.nextInt();
             int y = fisier.nextInt();
             jucatori.add(creareJucator.creazaJucator(str,
-                    x, y, harta.harta.get(x).charAt(y)));
+                    x, y, harta.getHarta().get(x).charAt(y)));
         }
         //Numar de runde.
         r = fisier.nextInt();
@@ -69,13 +68,6 @@ public class CitireIntrare {
      */
     public int getM() {
         return this.m;
-    }
-
-    /**
-     * @return returneaza harta
-     */
-    public ArrayList<String> getHarta() {
-        return this.harta;
     }
 
     /**

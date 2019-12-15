@@ -4,10 +4,11 @@ import fileio.FileSystem;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Harta {
     private static Harta instance = null;
-    public ArrayList<String> harta = new ArrayList<String>();
+    private ArrayList<String> harta = new ArrayList<String>();
 
     //Constructor de citire a hartii din fisierul de intrare
     Harta(String in, String out) throws IOException {
@@ -30,5 +31,9 @@ public class Harta {
         }
 
     return instance;
+    }
+
+    public ArrayList<String> getHarta() {
+        return this.harta;
     }
 }

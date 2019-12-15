@@ -38,7 +38,7 @@ public final class Main {
                     //Se muta jucatorii
                     jucatori.get(j).muta(runde.get(i).charAt(j));
                     //Se modifica tipul de teren pe care este jucatorul, dupa mutare.
-                    jucatori.get(j).setTipTeren(harta.harta.get(jucatori.get(j).getX()).
+                    jucatori.get(j).setTipTeren(harta.getHarta().get(jucatori.get(j).getX()).
                                                 charAt(jucatori.get(j).getY()));
                     //Se scade dmg de overtime
                     jucatori.get(j).overtime();
