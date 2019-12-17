@@ -1,6 +1,8 @@
 package main;
 
 import fileio.FileSystem;
+import ingeri.CreareInger;
+import ingeri.Inger;
 import jucatori.CreareJucator;
 import jucatori.Jucator;
 
@@ -15,6 +17,7 @@ public class CitireIntrare {
     private ArrayList<Jucator> jucatori = new ArrayList<Jucator>();
     private int r;
     private ArrayList<String> runde = new ArrayList<String>();
+    private ArrayList<ArrayList<Inger>> ingeri = new ArrayList<ArrayList<Inger>>();
 
     /**
      * Functia de citire a fisierului de intrare.
@@ -23,6 +26,7 @@ public class CitireIntrare {
      */
     public void citire(final String in, final String out) throws IOException {
         CreareJucator creareJucator = CreareJucator.getInstance();
+        CreareInger creareInger = CreareInger.getInstance();
         FileSystem fisier = new FileSystem(in, out);
 
         //Dimensiunile hartii.
@@ -51,6 +55,19 @@ public class CitireIntrare {
         //Tipul de mutare pentru fiecare runda.
         for (int i = 0; i < r; i++) {
             runde.add(fisier.nextWord());
+        }
+
+        for (int i = 0; i < r; i++) {
+            int nrIngeri = fisier.nextInt();
+            ArrayList<Inger> aux = new ArrayList<Inger>();
+            for (int j = 0; j < nrIngeri; j++) {
+                String inger = fisier.nextWord();
+                String[] tokens = inger.split(",");
+                int x = Integer.parseInt(tokens[1]);
+                int y = Integer.parseInt(tokens[2]);
+                aux.add(creareInger.creazaInger(tokens[0], x, y));
+            }
+            ingeri.add(aux);
         }
 
         fisier.close();
@@ -96,6 +113,13 @@ public class CitireIntrare {
      */
     public ArrayList<String> getRunde() {
         return this.runde;
+    }
+
+    /**
+     * @return returneaza ingerii.
+     */
+    public ArrayList<ArrayList<Inger>> getIngeri() {
+        return this.ingeri;
     }
 
     /**

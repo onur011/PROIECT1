@@ -1,7 +1,7 @@
 package main;
 
+import ingeri.Inger;
 import jucatori.Jucator;
-import main.Harta;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ public final class Main {
         ArrayList<String>  runde;
         Harta harta = Harta.getInstance(args[0], args[1]);
         ArrayList<Jucator> jucatori;
+        ArrayList<ArrayList<Inger>> ingeri;
         int n, m, r, p, i, j, k;
 
         //Se extrag informatiile utile pentru desfasurarea jocului.
@@ -25,6 +26,7 @@ public final class Main {
         p = intrare.getP();
         jucatori = intrare.getJucatori();
         runde = intrare.getRunde();
+        ingeri = intrare.getIngeri();
 
         //Runde joc
         for (i = 0; i < r; i++) {

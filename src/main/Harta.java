@@ -4,16 +4,15 @@ import fileio.FileSystem;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Harta {
     private static Harta instance = null;
     private ArrayList<String> harta = new ArrayList<String>();
 
     //Constructor de citire a hartii din fisierul de intrare
-    Harta(String in, String out) throws IOException {
+    Harta(final String in, final String out) throws IOException {
         FileSystem fisier = new FileSystem(in, out);
-        int n,m;
+        int n, m;
 
         n = fisier.nextInt();
         m = fisier.nextInt();
@@ -25,14 +24,17 @@ public class Harta {
         fisier.close();
     }
 
-    public static Harta getInstance(String in, String out) throws IOException {
-        if (instance == null ){
+    public static Harta getInstance(final String in, final String out) throws IOException {
+        if (instance == null) {
             instance = new Harta(in, out);
         }
 
     return instance;
     }
 
+    /**
+     * @return returneaza harta.
+     */
     public ArrayList<String> getHarta() {
         return this.harta;
     }
