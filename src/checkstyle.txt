@@ -1,13 +1,4 @@
 Starting audit...
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Main.java:4:1: Redundant import from the same package - main.Harta. [RedundantImport]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:7:8: Unused import - java.util.List. [UnusedImports]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:14:11: Parameter in should be final. [FinalParameters]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:14:22: Parameter out should be final. [FinalParameters]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:16:15: ',' is not followed by whitespace. [WhitespaceAfter]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:28:37: Parameter in should be final. [FinalParameters]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:28:48: Parameter out should be final. [FinalParameters]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:29:29: ')' is preceded with whitespace. [ParenPad]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:29:31: '{' is not preceded with whitespace. [WhitespaceAround]
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Harta.java:36:5: Class 'Harta' looks like designed for extension (can be subclassed), but the method 'getHarta' does not have javadoc that explains how to do that safely. If class is not designed for extension consider making the class 'Harta' final or making the method 'getHarta' static/final/abstract/empty, or adding allowed annotation for the method. [DesignForExtension]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/CitireIntrare.java:62:30: 'aux' hides a field. [HiddenField]
 Audit done.
-Checkstyle ends with 10 errors.
+Checkstyle ends with 1 errors.

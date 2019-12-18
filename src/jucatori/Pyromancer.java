@@ -2,10 +2,13 @@ package jucatori;
 
 import utile.Constante;
 
+import java.io.IOException;
+
 public final class Pyromancer extends Jucator implements Abilitati {
 
     //Constructor Pyromancer
-    public Pyromancer(final int x, final int y, final char tip, final char type) {
+    public Pyromancer(final int x, final int y, final char tip, final char type, final int id) {
+        this.setId(id);
         this.setX(x);
         this.setY(y);
         this.setHp(Constante.HP_INITIAL_P);
@@ -20,13 +23,13 @@ public final class Pyromancer extends Jucator implements Abilitati {
     }
 
     @Override
-    public void incepeLupta(final Jucator jucator) {
+    public void incepeLupta(final Jucator jucator) throws IOException {
         jucator.lupta(this);
     }
 
     //Pyromancer vs Knight
     @Override
-    public void lupta(final Knight knight) {
+    public void lupta(final Knight knight) throws IOException {
         knight.atacaK(this, Constante.K_LUPTA_P_ABL_1, Constante.K_LUPTA_P_ABL_2);
         this.atacaP(knight, Constante.P_LUPTA_K);
 
@@ -35,7 +38,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     //Pyromancer vs Rogue
     @Override
-    public void lupta(final Rogue rogue) {
+    public void lupta(final Rogue rogue) throws IOException {
         rogue.atacaR(this, Constante.R_LUPTA_P_ABL_1, Constante.R_LUPTA_P_ABL_2);
         this.atacaP(rogue, Constante.P_LUPTA_R);
 
@@ -44,7 +47,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     //Pyromancer vs Pyromancer
     @Override
-    public void lupta(final Pyromancer pyromancer) {
+    public void lupta(final Pyromancer pyromancer) throws IOException {
         this.atacaP(pyromancer, Constante.P_LUPTA_P);
         pyromancer.atacaP(this, Constante.P_LUPTA_P);
 
@@ -53,7 +56,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     //Pyromancer vs Wizard
     @Override
-    public void lupta(final Wizard wizard) {
+    public void lupta(final Wizard wizard) throws IOException {
         this.atacaP(wizard, Constante.P_LUPTA_W);
         wizard.atacaW(this, Constante.W_LUPTA_P_ABL_1, Constante.W_LUPTA_P_ABL_2);
 

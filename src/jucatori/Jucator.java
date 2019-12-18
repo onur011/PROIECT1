@@ -1,8 +1,15 @@
 package jucatori;
 
+import Magician.Observer;
+import Magician.Subject;
 import utile.Constante;
 
-public abstract class Jucator {
+import java.io.IOException;
+import java.util.ArrayList;
+
+public abstract class Jucator implements Subject {
+    private ArrayList<Observer> list = new ArrayList<Observer>();
+    private int id;
     private int hp;
     private int xp;
     private int x;
@@ -18,6 +25,31 @@ public abstract class Jucator {
     private boolean paralizat;
     private int timpParalizat;
     private float dmgFaraBonus;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    @Override
+    public void adaugaObserver(Observer o) {
+        this.list.add(o);
+    }
+
+    @Override
+    public void stergeObserver(Observer o) {
+        list.remove(o);
+    }
+
+    @Override
+    public void notificaObserveri(String str) throws IOException {
+        for (Observer o : list) {
+            o.update(str);
+        }
+    }
 
     /**
      * @param dmgFaraBonusRasa dmg primit fara bonus de rasa.
@@ -56,7 +88,7 @@ public abstract class Jucator {
      * @param hpNivel1 hp per nivel pentru jucatorul 1.
      * @param hpNivel2 hp per nivel pentru jucatorul 2.
      */
-    public void dupaLupta(final Jucator jucator, final int hpNivel1, final int hpNivel2) {
+    public void dupaLupta(final Jucator jucator, final int hpNivel1, final int hpNivel2) throws IOException {
         //Se calculeza hp fiecaruia dupa dmg.
         this.iaDamage(jucator);
         //Se verifica daca fac un nou nivel;
@@ -93,7 +125,7 @@ public abstract class Jucator {
      * @param hpNivelNou Calculeaza nivelul jucatorului
      * Daca trece la un nivel nou, ii modificam hp si il aducem la 100%
      */
-    public void nouNivel(final int hpNivelNou) {
+    public void nouNivel(final int hpNivelNou) throws IOException {
         int nivelInitial = this.nivel;
         //Daca jucatorul moare, nu ii mai crestem nivelul
         if (this.mort) {
@@ -108,13 +140,19 @@ public abstract class Jucator {
             this.hp = this.hpInitial + hpNivelNou * (this.nivel - nivelInitial);
             this.hpInitial = this.hp;
         }
+
+        for (int i = nivelInitial + 1; i <= this.nivel; i++) {
+            String str = this.numeCaracter() + " " + this.id + " reached level "
+            + Integer.toString(i);
+            this.notificaObserveri(str);
+        }
     }
     /**
      * @param jucator jucatorul care ia dmg.
      * Functia de calculare a dmg luat de 2 jucatori care se lupta
      * Se adauga si ex corespunzator daca unul dintre ei moare.
      */
-    public void iaDamage(final Jucator jucator) {
+    public void iaDamage(final Jucator jucator) throws IOException {
         int xpj1 = this.xp, xpj2 = jucator.xp;
         //Se scade dmg primit de fiecare jucator
         this.hp -= this.damage;
@@ -122,10 +160,16 @@ public abstract class Jucator {
         //Se verifica daca sunt morti.
         if (this.hp <= 0) {
             this.mort = true;
+            String str = "Player " + this.numeCaracter() + " " +this.getId() + " was killed by "
+            + jucator.numeCaracter() + " " + jucator.getId();
+            this.notificaObserveri(str);
         }
 
         if (jucator.hp <= 0) {
             jucator.mort = true;
+            String str = "Player " + jucator.numeCaracter() + " " + jucator.getId() + " was killed by "
+            + this.numeCaracter() + " " + this.getId();
+            jucator.notificaObserveri(str);
         }
         //Daca unul este mort,se calculeaza xp pentru celalalt.
         if (jucator.mort) {
@@ -148,6 +192,19 @@ public abstract class Jucator {
      */
     public int getTime() {
         return this.timeDmgO;
+    }
+
+    public String numeCaracter() {
+        switch (this.getTipCaracter()) {
+            case 'K' : return "Knight";
+
+            case 'R' : return "Rogue";
+
+            case 'W' : return "Wizard";
+
+            case 'P' : return "Pyromancer";
+            default : return null;
+        }
     }
 
     /**
@@ -203,7 +260,7 @@ public abstract class Jucator {
     /**
      * @param jucator Se decide daca cei doi jucatori se vor lupta.
      */
-    public void cineLupta(final Jucator jucator) {
+    public void cineLupta(final Jucator jucator) throws IOException {
         //Se lupta doar daca se afla pe aceeasi pozitie si nu sunt morti.
         if (this.x == jucator.x && this.y == jucator.y && !this.mort && !jucator.mort) {
             this.incepeLupta(jucator);
@@ -313,10 +370,10 @@ public abstract class Jucator {
 
     }
 
-    public abstract void incepeLupta(Jucator jucator);
-    public abstract void lupta(Knight knight);
-    public abstract void lupta(Rogue rogue);
-    public abstract void lupta(Pyromancer pyromancer);
-    public abstract void lupta(Wizard wizard);
+    public abstract void incepeLupta(Jucator jucator) throws IOException;
+    public abstract void lupta(Knight knight) throws IOException;
+    public abstract void lupta(Rogue rogue) throws IOException;
+    public abstract void lupta(Pyromancer pyromancer) throws IOException;
+    public abstract void lupta(Wizard wizard) throws IOException;
 
 }

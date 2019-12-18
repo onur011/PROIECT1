@@ -6,7 +6,7 @@ import ingeri.Inger;
 import jucatori.CreareJucator;
 import jucatori.Jucator;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 //Se reallizeaza citirea din fisier.
@@ -47,7 +47,7 @@ public class CitireIntrare {
             int x = fisier.nextInt();
             int y = fisier.nextInt();
             jucatori.add(creareJucator.creazaJucator(str,
-                    x, y, harta.getHarta().get(x).charAt(y)));
+                    x, y, harta.getHarta().get(x).charAt(y),i));
         }
         //Numar de runde.
         r = fisier.nextInt();
@@ -125,32 +125,34 @@ public class CitireIntrare {
     /**
      * Functia de afisarea.
      * @param jucatorii jucatori
-     * @param in fisier citire
      * @param out   fisier scriere
      */
-    public void afisare(final ArrayList<Jucator> jucatorii, final String in,
+    public void afisare(final ArrayList<Jucator> jucatorii,
                         final String out) throws IOException  {
-        FileSystem fisier = new FileSystem(in, out);
+
+        BufferedWriter fisier = new BufferedWriter(new FileWriter(out, true));
+
+        fisier.write("~~ Results ~~\n");
+
         for (int i = 0; i < jucatorii.size(); i++) {
-            fisier.writeCharacter(jucatorii.get(i).getTipCaracter());
-            fisier.writeWord(" ");
+            fisier.write(jucatorii.get(i).getTipCaracter());
+            fisier.write(" ");
 
             if (jucatori.get(i).getMort()) {
-                fisier.writeWord("dead");
-                fisier.writeNewLine();
+                fisier.write("dead\n");
                 continue;
             }
 
-            fisier.writeInt(jucatorii.get(i).getNivel());
-            fisier.writeWord(" ");
-            fisier.writeInt(jucatorii.get(i).getXp());
-            fisier.writeWord(" ");
-            fisier.writeInt(jucatorii.get(i).getHp());
-            fisier.writeWord(" ");
-            fisier.writeInt(jucatorii.get(i).getX());
-            fisier.writeWord(" ");
-            fisier.writeInt(jucatorii.get(i).getY());
-            fisier.writeNewLine();
+            fisier.write(Integer.toString(jucatorii.get(i).getNivel()));
+            fisier.write(" ");
+            fisier.write(Integer.toString(jucatorii.get(i).getXp()));
+            fisier.write(" ");
+            fisier.write(Integer.toString(jucatorii.get(i).getHp()));
+            fisier.write(" ");
+            fisier.write(Integer.toString(jucatorii.get(i).getX()));
+            fisier.write(" ");
+            fisier.write(Integer.toString(jucatorii.get(i).getY()) + "\n");
+
         }
         fisier.close();
     }

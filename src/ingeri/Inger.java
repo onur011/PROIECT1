@@ -1,11 +1,34 @@
 package ingeri;
 
-public class Inger {
+import Magician.Observer;
+import Magician.Subject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Inger implements Subject {
+    private ArrayList<Observer> list;
     private String tipInger;
     private int x;
     private int y;
     private boolean bun;
 
+    @Override
+    public void adaugaObserver(Observer o) {
+        list.add(o);
+    }
+
+    @Override
+    public void stergeObserver(Observer o) {
+        list.remove(o);
+    }
+
+    @Override
+    public void notificaObserveri(String str) throws IOException {
+        for (Observer o : list) {
+            o.update(str);
+        }
+    }
     /**
      * @return returneaza tipul de inger(bun/rau).
      */

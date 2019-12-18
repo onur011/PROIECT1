@@ -2,12 +2,15 @@ package jucatori;
 
 import utile.Constante;
 
+import java.io.IOException;
+
 public final class Rogue extends Jucator implements Abilitati {
     //Memoreaza cate lupte a avut un Rogue (este utilizat pentru critica)
     private int numarLovituri;
 
     //Constructor Rogue
-    public Rogue(final int x, final int y, final char tip, final char type) {
+    public Rogue(final int x, final int y, final char tip, final char type, final int id) {
+        this.setId(id);
         this.setX(x);
         this.setY(y);
         this.setHp(Constante.HP_INITIAL_R);
@@ -22,13 +25,13 @@ public final class Rogue extends Jucator implements Abilitati {
         this.numarLovituri = 0;
     }
     @Override
-    public void incepeLupta(final Jucator jucator) {
+    public void incepeLupta(final Jucator jucator) throws IOException {
         jucator.lupta(this);
     }
 
     //Rogue vs Knight
     @Override
-    public void lupta(final Knight knight) {
+    public void lupta(final Knight knight) throws IOException {
         this.atacaR(knight, Constante.R_LUPTA_K_ABL_1, Constante.R_LUPTA_K_ABL_2);
         knight.atacaK(this, Constante.K_LUPTA_R_ABL_1, Constante.K_LUPTA_R_ABL_2);
 
@@ -37,7 +40,7 @@ public final class Rogue extends Jucator implements Abilitati {
 
     //Rogue vs Rogue
     @Override
-    public void lupta(final Rogue rogue) {
+    public void lupta(final Rogue rogue) throws IOException {
         this.atacaR(rogue, Constante.R_LUPTA_R_ABL_1, Constante.R_LUPTA_R_ABL_2);
         rogue.atacaR(this, Constante.R_LUPTA_R_ABL_1, Constante.R_LUPTA_R_ABL_2);
 
@@ -46,7 +49,7 @@ public final class Rogue extends Jucator implements Abilitati {
 
     //Rogue vs Pyromancer
     @Override
-    public void lupta(final Pyromancer pyromancer) {
+    public void lupta(final Pyromancer pyromancer) throws IOException {
         this.atacaR(pyromancer, Constante.R_LUPTA_P_ABL_1, Constante.R_LUPTA_P_ABL_2);
         pyromancer.atacaP(this, Constante.P_LUPTA_R);
 
@@ -55,7 +58,7 @@ public final class Rogue extends Jucator implements Abilitati {
 
     //Rogue vs Wizard
     @Override
-    public void lupta(final Wizard wizard) {
+    public void lupta(final Wizard wizard) throws IOException {
         this.atacaR(wizard, Constante.R_LUPTA_W_ABL_1, Constante.R_LUPTA_P_ABL_2);
         wizard.atacaW(this, Constante.W_LUPTA_R_ABL_1, Constante.W_LUPTA_R_ABL_2);
 

@@ -2,10 +2,13 @@ package jucatori;
 
 import utile.Constante;
 
+import java.io.IOException;
+
 public final class Knight extends Jucator implements Abilitati {
 
     //Constructor Knight
-    public Knight(final int x, final int y, final char tip, final char type) {
+    public Knight(final int x, final int y, final char tip, final char type, final int id) {
+        this.setId(id);
         this.setX(x);
         this.setY(y);
         this.setHp(Constante.HP_INITIAL_K);
@@ -19,13 +22,13 @@ public final class Knight extends Jucator implements Abilitati {
         this.setTimpParalizat(0);
     }
     @Override
-    public void incepeLupta(final Jucator jucator) {
+    public void incepeLupta(final Jucator jucator) throws IOException {
         jucator.lupta(this);
     }
 
     //Knight vs Knight
     @Override
-    public void lupta(final Knight knight) {
+    public void lupta(final Knight knight) throws IOException {
         this.atacaK(knight, Constante.K_LUPTA_K_ABL_1, Constante.K_LUPTA_K_ABL_2);
         knight.atacaK(this, Constante.K_LUPTA_K_ABL_1, Constante.K_LUPTA_K_ABL_2);
 
@@ -34,7 +37,7 @@ public final class Knight extends Jucator implements Abilitati {
 
     //Knight vs Rouge
     @Override
-    public void lupta(final Rogue rogue) {
+    public void lupta(final Rogue rogue) throws IOException {
         this.atacaK(rogue, Constante.K_LUPTA_R_ABL_1, Constante.K_LUPTA_R_ABL_2);
         rogue.atacaR(this, Constante.R_LUPTA_K_ABL_1, Constante.R_LUPTA_K_ABL_2);
 
@@ -43,7 +46,7 @@ public final class Knight extends Jucator implements Abilitati {
 
     //Knight vs Pyromancer
     @Override
-    public void lupta(final Pyromancer pyromancer) {
+    public void lupta(final Pyromancer pyromancer) throws IOException {
         this.atacaK(pyromancer, Constante.K_LUPTA_P_ABL_1, Constante.K_LUPTA_P_ABL_2);
         pyromancer.atacaP(this, Constante.P_LUPTA_K);
 
@@ -52,7 +55,7 @@ public final class Knight extends Jucator implements Abilitati {
 
     //Knight vs Wizard
     @Override
-    public void lupta(final Wizard wizard) {
+    public void lupta(final Wizard wizard) throws IOException {
         this.atacaK(wizard, Constante.K_LUPTA_W_ABL_1, Constante.K_LUPTA_W_ABL_2);
         wizard.atacaW(this, Constante.W_LUPTA_K_ABL_1, Constante.W_LUPTA_K_ABL_2);
 
