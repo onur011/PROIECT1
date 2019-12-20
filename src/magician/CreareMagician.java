@@ -1,6 +1,6 @@
-package Magician;
+package magician;
 
-public class CreareMagician {
+public final class CreareMagician {
     private static CreareMagician instance = null;
 
     private CreareMagician() { }

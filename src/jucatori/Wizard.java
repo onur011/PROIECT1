@@ -20,6 +20,14 @@ public final class Wizard extends Jucator {
         this.setTipCaracter(type);
         this.setParalizat(false);
         this.setTimpParalizat(0);
+        this.setVsKnight1(Constante.W_LUPTA_K_ABL_1);
+        this.setVsPyromancer1(Constante.W_LUPTA_P_ABL_1);
+        this.setVsRogue1(Constante.W_LUPTA_R_ABL_1);
+        this.setVsWizard1(Constante.W_LUPTA_W_ABL_1);
+        this.setVsKnight2(Constante.W_LUPTA_K_ABL_2);
+        this.setVsPyromancer2(Constante.W_LUPTA_P_ABL_2);
+        this.setVsRogue2(Constante.W_LUPTA_R_ABL_2);
+        this.setVsWizard2(Constante.W_LUPTA_W_ABL_2);
     }
     @Override
     public void incepeLupta(final Jucator jucator) throws IOException {
@@ -29,8 +37,8 @@ public final class Wizard extends Jucator {
     //Wizard vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
-        knight.atacaK(this, Constante.K_LUPTA_W_ABL_1, Constante.K_LUPTA_W_ABL_2);
-        this.atacaW(knight, Constante.W_LUPTA_K_ABL_1, Constante.W_LUPTA_K_ABL_2);
+        knight.atacaK(this, knight.getVsWizard1(), knight.getVsWizard2());
+        this.atacaW(knight, this.getVsKnight1(), this.getVsKnight2());
 
         this.dupaLupta(knight, Constante.HP_NIVEL_W, Constante.HP_NIVEL_K);
     }
@@ -38,8 +46,8 @@ public final class Wizard extends Jucator {
     //Wizard vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
-        rogue.atacaR(this, Constante.R_LUPTA_W_ABL_1, Constante.R_LUPTA_W_ABL_2);
-        this.atacaW(rogue, Constante.W_LUPTA_R_ABL_1, Constante.W_LUPTA_R_ABL_2);
+        rogue.atacaR(this, rogue.getVsWizard1(), rogue.getVsWizard2());
+        this.atacaW(rogue, this.getVsRogue1(), this.getVsRogue2());
 
         this.dupaLupta(rogue, Constante.HP_NIVEL_W, Constante.HP_NIVEL_R);
     }
@@ -47,8 +55,8 @@ public final class Wizard extends Jucator {
     //Wizard vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
-        pyromancer.atacaP(this, Constante.P_LUPTA_W);
-        this.atacaW(pyromancer, Constante.W_LUPTA_P_ABL_1, Constante.W_LUPTA_P_ABL_2);
+        pyromancer.atacaP(this, pyromancer.getVsWizard1());
+        this.atacaW(pyromancer, this.getVsPyromancer1(), this.getVsPyromancer2());
 
         this.dupaLupta(pyromancer, Constante.HP_NIVEL_W, Constante.HP_NIVEL_P);
     }
@@ -56,8 +64,8 @@ public final class Wizard extends Jucator {
     //Wizard vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
-        wizard.atacaW(this, Constante.W_LUPTA_W_ABL_1, Constante.W_LUPTA_W_ABL_2);
-        this.atacaW(wizard, Constante.W_LUPTA_W_ABL_1, Constante.W_LUPTA_W_ABL_2);
+        wizard.atacaW(this, wizard.getVsWizard1(), wizard.getVsWizard2());
+        this.atacaW(wizard, this.getVsWizard1(), this.getVsWizard2());
 
         this.dupaLupta(wizard, Constante.HP_NIVEL_W, Constante.HP_NIVEL_W);
     }

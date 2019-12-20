@@ -1,7 +1,7 @@
 package main;
 
-import Magician.Magician;
-import Magician.CreareMagician;
+import magician.Magician;
+import magician.CreareMagician;
 import ingeri.Inger;
 import jucatori.Jucator;
 import utile.Constante;

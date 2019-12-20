@@ -2,6 +2,7 @@ package jucatori;
 
 import utile.Constante;
 
+import javax.xml.crypto.dsig.keyinfo.KeyName;
 import java.io.IOException;
 
 public final class Rogue extends Jucator implements Abilitati {
@@ -23,6 +24,14 @@ public final class Rogue extends Jucator implements Abilitati {
         this.setParalizat(false);
         this.setTimpParalizat(0);
         this.numarLovituri = 0;
+        this.setVsKnight1(Constante.R_LUPTA_K_ABL_1);
+        this.setVsPyromancer1(Constante.R_LUPTA_P_ABL_1);
+        this.setVsRogue1(Constante.R_LUPTA_R_ABL_1);
+        this.setVsWizard1(Constante.R_LUPTA_W_ABL_1);
+        this.setVsKnight2(Constante.R_LUPTA_K_ABL_2);
+        this.setVsPyromancer2(Constante.R_LUPTA_P_ABL_2);
+        this.setVsRogue2(Constante.R_LUPTA_R_ABL_2);
+        this.setVsWizard2(Constante.R_LUPTA_W_ABL_2);
     }
     @Override
     public void incepeLupta(final Jucator jucator) throws IOException {
@@ -32,8 +41,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
-        this.atacaR(knight, Constante.R_LUPTA_K_ABL_1, Constante.R_LUPTA_K_ABL_2);
-        knight.atacaK(this, Constante.K_LUPTA_R_ABL_1, Constante.K_LUPTA_R_ABL_2);
+        this.atacaR(knight, this.getVsKnight1(), this.getVsKnight2());
+        knight.atacaK(this, knight.getVsRogue1(), knight.getVsRogue2());
 
         this.dupaLupta(knight, Constante.HP_NIVEL_R, Constante.HP_NIVEL_K);
     }
@@ -41,8 +50,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
-        this.atacaR(rogue, Constante.R_LUPTA_R_ABL_1, Constante.R_LUPTA_R_ABL_2);
-        rogue.atacaR(this, Constante.R_LUPTA_R_ABL_1, Constante.R_LUPTA_R_ABL_2);
+        this.atacaR(rogue, this.getVsRogue1(), this.getVsRogue2());
+        rogue.atacaR(this, rogue.getVsRogue1(), rogue.getVsRogue2());
 
         this.dupaLupta(rogue, Constante.HP_NIVEL_R, Constante.HP_NIVEL_R);
     }
@@ -50,8 +59,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
-        this.atacaR(pyromancer, Constante.R_LUPTA_P_ABL_1, Constante.R_LUPTA_P_ABL_2);
-        pyromancer.atacaP(this, Constante.P_LUPTA_R);
+        this.atacaR(pyromancer, this.getVsPyromancer1(), this.getVsPyromancer2());
+        pyromancer.atacaP(this, pyromancer.getVsRogue1());
 
         this.dupaLupta(pyromancer, Constante.HP_NIVEL_R, Constante.HP_NIVEL_P);
     }
@@ -59,8 +68,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
-        this.atacaR(wizard, Constante.R_LUPTA_W_ABL_1, Constante.R_LUPTA_P_ABL_2);
-        wizard.atacaW(this, Constante.W_LUPTA_R_ABL_1, Constante.W_LUPTA_R_ABL_2);
+        this.atacaR(wizard, this.getVsWizard1(), this.getVsWizard2());
+        wizard.atacaW(this, wizard.getVsRogue1(), wizard.getVsRogue2());
 
         this.dupaLupta(wizard, Constante.HP_NIVEL_R, Constante.HP_NIVEL_W);
     }

@@ -1,7 +1,7 @@
 package jucatori;
 
-import Magician.Observer;
-import Magician.Subject;
+import magician.Observer;
+import magician.Subject;
 import utile.Constante;
 
 import java.io.IOException;
@@ -25,27 +25,162 @@ public abstract class Jucator implements Subject {
     private boolean paralizat;
     private int timpParalizat;
     private float dmgFaraBonus;
+    private float vsKnight1;
+    private float vsPyromancer1;
+    private float vsRogue1;
+    private float vsWizard1;
+    private float vsKnight2;
+    private float vsPyromancer2;
+    private float vsRogue2;
+    private float vsWizard2;
 
-    public void setId(int id) {
+    /**
+     * @param ind Se seteaza modificator de versus knight.
+     */
+    public void setVsKnight2(final float ind) {
+        this.vsKnight2 = ind;
+    }
+
+    /**
+     * @param ind Se seteaza modificator de versus pyromancer.
+     */
+    public void setVsPyromancer2(final float ind) {
+        this.vsPyromancer2 = ind;
+    }
+
+    /**
+     * @param ind Se seteaza modificator de versus rogue.
+     */
+    public void setVsRogue2(final float ind) {
+        this.vsRogue2 = ind;
+    }
+
+    /**
+     * @param ind Se seteaza modificator de versus wizard.
+     */
+    public void setVsWizard2(final float ind) {
+        this.vsWizard2 = ind;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus knight.
+     */
+    public float getVsKnight2() {
+        return this.vsKnight2;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus pyromancer.
+     */
+    public float getVsPyromancer2() {
+        return this.vsPyromancer2;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus rogue.
+     */
+    public float getVsRogue2() {
+        return this.vsRogue2;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus wizard.
+     */
+    public float getVsWizard2() {
+        return this.vsWizard2;
+    }
+
+    /**
+     * @param ind Se seteaza modificator de versus knight.
+     */
+    public void setVsKnight1(final float ind) {
+        this.vsKnight1 = ind;
+    }
+
+    /**
+     * @param ind Se seteaza modificator de versus pyromancer.
+     */
+    public void setVsPyromancer1(final float ind) {
+        this.vsPyromancer1 = ind;
+    }
+
+    /**
+     * @param ind Se seteaza modificator de versus rogue.
+     */
+    public void setVsRogue1(final float ind) {
+        this.vsRogue1 = ind;
+    }
+
+    /**
+     * @param ind Se seteaza modificator de versus wizard.
+     */
+    public void setVsWizard1(final float ind) {
+        this.vsWizard1 = ind;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus knight.
+     */
+    public float getVsKnight1() {
+        return this.vsKnight1;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus pyromancer.
+     */
+    public float getVsPyromancer1() {
+        return this.vsPyromancer1;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus rogue.
+     */
+    public float getVsRogue1() {
+        return this.vsRogue1;
+    }
+
+    /**
+     * @return Se returneaza modificator de rasa versus wizard.
+     */
+    public float getVsWizard1() {
+        return this.vsWizard1;
+    }
+
+    /**
+     * @param id Se seteaza id initial.
+     */
+    public void setId(final int id) {
         this.id = id;
     }
 
+    /**
+     * @return Se returneaza id initial.
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * @param o Se adauga observator.
+     */
     @Override
-    public void adaugaObserver(Observer o) {
+    public void adaugaObserver(final Observer o) {
         this.list.add(o);
     }
 
+    /**
+     * @param o Se sterge observator.
+     */
     @Override
-    public void stergeObserver(Observer o) {
+    public void stergeObserver(final Observer o) {
         list.remove(o);
     }
 
+    /**
+     * @param str Se notifica observatorii.
+     */
     @Override
-    public void notificaObserveri(String str) throws IOException {
+    public void notificaObserveri(final String str) throws IOException {
         for (Observer o : list) {
             o.update(str);
         }
@@ -88,7 +223,9 @@ public abstract class Jucator implements Subject {
      * @param hpNivel1 hp per nivel pentru jucatorul 1.
      * @param hpNivel2 hp per nivel pentru jucatorul 2.
      */
-    public void dupaLupta(final Jucator jucator, final int hpNivel1, final int hpNivel2) throws IOException {
+    public void dupaLupta(final Jucator jucator, final int hpNivel1, final int hpNivel2)
+        throws IOException {
+
         //Se calculeza hp fiecaruia dupa dmg.
         this.iaDamage(jucator);
         //Se verifica daca fac un nou nivel;
@@ -160,15 +297,15 @@ public abstract class Jucator implements Subject {
         //Se verifica daca sunt morti.
         if (this.hp <= 0) {
             this.mort = true;
-            String str = "Player " + this.numeCaracter() + " " +this.getId() + " was killed by "
+            String str = "Player " + this.numeCaracter() + " " + this.getId() + " was killed by "
             + jucator.numeCaracter() + " " + jucator.getId();
             this.notificaObserveri(str);
         }
 
         if (jucator.hp <= 0) {
             jucator.mort = true;
-            String str = "Player " + jucator.numeCaracter() + " " + jucator.getId() + " was killed by "
-            + this.numeCaracter() + " " + this.getId();
+            String str = "Player " + jucator.numeCaracter() + " " + jucator.getId()
+            + " was killed by " + this.numeCaracter() + " " + this.getId();
             jucator.notificaObserveri(str);
         }
         //Daca unul este mort,se calculeaza xp pentru celalalt.
@@ -194,6 +331,9 @@ public abstract class Jucator implements Subject {
         return this.timeDmgO;
     }
 
+    /**
+     * @return Se returneaza numele jucatorului.
+     */
     public String numeCaracter() {
         switch (this.getTipCaracter()) {
             case 'K' : return "Knight";

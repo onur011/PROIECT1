@@ -87,10 +87,14 @@ public final class Constante {
     public static final int XP_PER_NIVEL = 50;
     public static final int XP = 200;
     public static final int XP_NIVEL = 40;
-    public static String out = null;
+    private static String out = null;
 
     public void out(final String str) {
         out = str;
+    }
+
+    public String getOut() {
+        return out;
     }
 
     public Constante() { }

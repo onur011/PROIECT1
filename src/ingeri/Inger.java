@@ -1,7 +1,7 @@
 package ingeri;
 
-import Magician.Observer;
-import Magician.Subject;
+import magician.Observer;
+import magician.Subject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,18 +13,27 @@ public class Inger implements Subject {
     private int y;
     private boolean bun;
 
+    /**
+     * @param o Se adauga observator.
+     */
     @Override
-    public void adaugaObserver(Observer o) {
+    public void adaugaObserver(final Observer o) {
         list.add(o);
     }
 
+    /**
+     * @param o Se sterge observator.
+     */
     @Override
-    public void stergeObserver(Observer o) {
+    public void stergeObserver(final Observer o) {
         list.remove(o);
     }
 
+    /**
+     * @param str Se notifica observatorii.
+     */
     @Override
-    public void notificaObserveri(String str) throws IOException {
+    public void notificaObserveri(final String str) throws IOException {
         for (Observer o : list) {
             o.update(str);
         }

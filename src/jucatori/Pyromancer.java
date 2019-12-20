@@ -20,6 +20,10 @@ public final class Pyromancer extends Jucator implements Abilitati {
         this.setTipCaracter(type);
         this.setParalizat(false);
         this.setTimpParalizat(0);
+        this.setVsKnight1(Constante.P_LUPTA_K);
+        this.setVsPyromancer1(Constante.P_LUPTA_P);
+        this.setVsRogue1(Constante.P_LUPTA_R);
+        this.setVsWizard1(Constante.P_LUPTA_W);
     }
 
     @Override
@@ -30,8 +34,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
-        knight.atacaK(this, Constante.K_LUPTA_P_ABL_1, Constante.K_LUPTA_P_ABL_2);
-        this.atacaP(knight, Constante.P_LUPTA_K);
+        this.atacaP(knight, this.getVsKnight1());
+        knight.atacaK(this, knight.getVsPyromancer1(), knight.getVsPyromancer2());
 
         this.dupaLupta(knight, Constante.HP_NIVEL_P, Constante.HP_NIVEL_K);
     }
@@ -39,8 +43,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
-        rogue.atacaR(this, Constante.R_LUPTA_P_ABL_1, Constante.R_LUPTA_P_ABL_2);
-        this.atacaP(rogue, Constante.P_LUPTA_R);
+        this.atacaP(rogue, this.getVsRogue1());
+        rogue.atacaR(this, rogue.getVsPyromancer1(), rogue.getVsPyromancer2());
 
         this.dupaLupta(rogue, Constante.HP_NIVEL_P, Constante.HP_NIVEL_R);
     }
@@ -48,8 +52,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
-        this.atacaP(pyromancer, Constante.P_LUPTA_P);
-        pyromancer.atacaP(this, Constante.P_LUPTA_P);
+        this.atacaP(pyromancer, this.getVsPyromancer1());
+        pyromancer.atacaP(this, pyromancer.getVsPyromancer1());
 
         this.dupaLupta(pyromancer, Constante.HP_NIVEL_P, Constante.HP_NIVEL_P);
     }
@@ -57,8 +61,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
-        this.atacaP(wizard, Constante.P_LUPTA_W);
-        wizard.atacaW(this, Constante.W_LUPTA_P_ABL_1, Constante.W_LUPTA_P_ABL_2);
+        this.atacaP(wizard, this.getVsWizard1());
+        wizard.atacaW(this, wizard.getVsPyromancer1(), wizard.getVsPyromancer2());
 
         this.dupaLupta(wizard, Constante.HP_NIVEL_P, Constante.HP_NIVEL_W);
     }

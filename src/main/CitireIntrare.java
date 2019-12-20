@@ -6,7 +6,9 @@ import ingeri.Inger;
 import jucatori.CreareJucator;
 import jucatori.Jucator;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 //Se reallizeaza citirea din fisier.
@@ -47,7 +49,7 @@ public class CitireIntrare {
             int x = fisier.nextInt();
             int y = fisier.nextInt();
             jucatori.add(creareJucator.creazaJucator(str,
-                    x, y, harta.getHarta().get(x).charAt(y),i));
+                    x, y, harta.getHarta().get(x).charAt(y), i));
         }
         //Numar de runde.
         r = fisier.nextInt();
@@ -59,15 +61,15 @@ public class CitireIntrare {
 
         for (int i = 0; i < r; i++) {
             int nrIngeri = fisier.nextInt();
-            ArrayList<Inger> aux = new ArrayList<Inger>();
+            ArrayList<Inger> auxiliar = new ArrayList<Inger>();
             for (int j = 0; j < nrIngeri; j++) {
                 String inger = fisier.nextWord();
                 String[] tokens = inger.split(",");
                 int x = Integer.parseInt(tokens[1]);
                 int y = Integer.parseInt(tokens[2]);
-                aux.add(creareInger.creazaInger(tokens[0], x, y));
+                auxiliar.add(creareInger.creazaInger(tokens[0], x, y));
             }
-            ingeri.add(aux);
+            ingeri.add(auxiliar);
         }
 
         fisier.close();
