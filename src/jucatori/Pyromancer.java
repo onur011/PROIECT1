@@ -1,5 +1,9 @@
 package jucatori;
 
+import ingeri.Inger;
+import strategii.Context;
+import strategii.Strategia1P;
+import strategii.Strategia2P;
 import utile.Constante;
 
 import java.io.IOException;
@@ -27,6 +31,22 @@ public final class Pyromancer extends Jucator implements Abilitati {
     }
 
     @Override
+    public void strategie() {
+        if ((this.getHpInitial() / Constante.LIMITA_1_HP_P  < this.getHp())
+                && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_P)) {
+            Context context = new Context(new Strategia1P());
+            context.executaStrategie(this);
+        } else if (this.getHp() < this.getHpInitial() / Constante.LIMITA_1_HP_P) {
+            Context context = new Context(new Strategia2P());
+            context.executaStrategie(this);
+        }
+    }
+
+    public void alegeInger(final Inger inger) throws IOException {
+        inger.acceptaInger(this);
+    }
+
+    @Override
     public void incepeLupta(final Jucator jucator) throws IOException {
         jucator.lupta(this);
     }
@@ -34,6 +54,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
+        this.strategie();
+        knight.strategie();
         this.atacaP(knight, this.getVsKnight1());
         knight.atacaK(this, knight.getVsPyromancer1(), knight.getVsPyromancer2());
 
@@ -43,6 +65,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
+        this.strategie();
+        rogue.strategie();
         this.atacaP(rogue, this.getVsRogue1());
         rogue.atacaR(this, rogue.getVsPyromancer1(), rogue.getVsPyromancer2());
 
@@ -52,6 +76,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
+        this.strategie();
+        pyromancer.strategie();
         this.atacaP(pyromancer, this.getVsPyromancer1());
         pyromancer.atacaP(this, pyromancer.getVsPyromancer1());
 
@@ -61,6 +87,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
+        this.strategie();
+        wizard.strategie();
         this.atacaP(wizard, this.getVsWizard1());
         wizard.atacaW(this, wizard.getVsPyromancer1(), wizard.getVsPyromancer2());
 

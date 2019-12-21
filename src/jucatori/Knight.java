@@ -1,5 +1,9 @@
 package jucatori;
 
+import ingeri.Inger;
+import strategii.Context;
+import strategii.Strategia1K;
+import strategii.Strategia2K;
 import utile.Constante;
 
 import java.io.IOException;
@@ -29,6 +33,27 @@ public final class Knight extends Jucator implements Abilitati {
         this.setVsRogue2(Constante.K_LUPTA_R_ABL_2);
         this.setVsWizard2(Constante.K_LUPTA_W_ABL_2);
     }
+
+    //Se aplica strategia pentru Knight.
+    @Override
+    public void strategie() {
+
+        if ((this.getHpInitial() / Constante.LIMITA_1_HP_K  < this.getHp())
+        && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_K)) {
+            Context context = new Context(new Strategia1K());
+            context.executaStrategie(this);
+        } else if (this.getHp() < this.getHpInitial() / Constante.LIMITA_1_HP_K) {
+            Context context = new Context(new Strategia2K());
+            context.executaStrategie(this);
+        }
+        //Acesta nu se modifica pentru ca initial este 0;
+        this.setVsKnight1(0f);
+    }
+
+    public void alegeInger(final Inger inger) throws IOException {
+        inger.acceptaInger(this);
+    }
+
     @Override
     public void incepeLupta(final Jucator jucator) throws IOException {
         jucator.lupta(this);
@@ -37,6 +62,8 @@ public final class Knight extends Jucator implements Abilitati {
     //Knight vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
+        this.strategie();
+        knight.strategie();
         this.atacaK(knight, this.getVsKnight1(), this.getVsKnight2());
         knight.atacaK(this, knight.getVsKnight1(), knight.getVsKnight2());
 
@@ -46,6 +73,8 @@ public final class Knight extends Jucator implements Abilitati {
     //Knight vs Rouge
     @Override
     public void lupta(final Rogue rogue) throws IOException {
+        this.strategie();
+        rogue.strategie();
         this.atacaK(rogue, this.getVsRogue1(), this.getVsRogue2());
         rogue.atacaR(this, rogue.getVsKnight1(), rogue.getVsKnight2());
 
@@ -55,6 +84,8 @@ public final class Knight extends Jucator implements Abilitati {
     //Knight vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
+        this.strategie();
+        pyromancer.strategie();
         this.atacaK(pyromancer, this.getVsPyromancer1(), this.getVsPyromancer2());
         pyromancer.atacaP(this, pyromancer.getVsKnight1());
 
@@ -64,6 +95,8 @@ public final class Knight extends Jucator implements Abilitati {
     //Knight vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
+        this.strategie();
+        wizard.strategie();
         this.atacaK(wizard, this.getVsWizard1(), this.getVsWizard2());
         wizard.atacaW(this, wizard.getVsKnight1(), wizard.getVsKnight2());
 

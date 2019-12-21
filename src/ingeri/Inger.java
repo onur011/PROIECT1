@@ -1,13 +1,18 @@
 package ingeri;
 
+import jucatori.Jucator;
+import jucatori.Wizard;
+import jucatori.Rogue;
+import jucatori.Knight;
+import jucatori.Pyromancer;
 import magician.Observer;
 import magician.Subject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Inger implements Subject {
-    private ArrayList<Observer> list;
+public abstract class Inger implements Subject {
+    private ArrayList<Observer> list = new ArrayList<Observer>();
     private String tipInger;
     private int x;
     private int y;
@@ -93,5 +98,28 @@ public class Inger implements Subject {
     public int getY() {
         return this.y;
     }
+
+    /**
+     * @return Se afiseaza actiunea ingerului asupra jucatorului.
+     */
+    public String seteazaOutput(final Jucator jucator) {
+        if (bun) {
+            return this.tipInger + " helped " + jucator.numeCaracter() + " " + jucator.getId();
+        }
+        return this.tipInger + " hit " + jucator.numeCaracter() + " " + jucator.getId();
+    }
+
+    /**
+     * Se returneaza stringul de afisare pentru ingeri.
+     */
+    public void spawn() throws IOException {
+        String str = "Angel " + this.tipInger + " was spawned at " + this.x + " " + this.y;
+        this.notificaObserveri(str);
+    }
+
+    public abstract void acceptaInger(Knight knight) throws IOException;
+    public abstract void acceptaInger(Pyromancer pyromancer) throws IOException;
+    public abstract void acceptaInger(Rogue rogue) throws IOException;
+    public abstract void acceptaInger(Wizard wizard) throws IOException;
 }
 

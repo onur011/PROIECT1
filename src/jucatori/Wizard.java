@@ -1,5 +1,9 @@
 package jucatori;
 
+import ingeri.Inger;
+import strategii.Context;
+import strategii.Strategia1W;
+import strategii.Strategia2W;
 import utile.Constante;
 
 import java.io.IOException;
@@ -29,14 +33,36 @@ public final class Wizard extends Jucator {
         this.setVsRogue2(Constante.W_LUPTA_R_ABL_2);
         this.setVsWizard2(Constante.W_LUPTA_W_ABL_2);
     }
+
+    @Override
+    public void strategie() {
+        if ((this.getHpInitial() / Constante.LIMITA_1_HP_W  < this.getHp())
+                && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_W)) {
+            Context context = new Context(new Strategia1W());
+            context.executaStrategie(this);
+        } else if (this.getHp() < this.getHpInitial() / Constante.LIMITA_1_HP_W) {
+            Context context = new Context(new Strategia2W());
+            context.executaStrategie(this);
+        }
+        //Acesta nu se modifica pentru ca initial este 0;
+        this.setVsWizard2(0f);
+    }
+
     @Override
     public void incepeLupta(final Jucator jucator) throws IOException {
         jucator.lupta(this);
     }
 
+    @Override
+    public void alegeInger(final Inger inger) throws IOException {
+        inger.acceptaInger(this);
+    }
+
     //Wizard vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
+        this.strategie();
+        knight.strategie();
         knight.atacaK(this, knight.getVsWizard1(), knight.getVsWizard2());
         this.atacaW(knight, this.getVsKnight1(), this.getVsKnight2());
 
@@ -46,6 +72,8 @@ public final class Wizard extends Jucator {
     //Wizard vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
+        this.strategie();
+        rogue.strategie();
         rogue.atacaR(this, rogue.getVsWizard1(), rogue.getVsWizard2());
         this.atacaW(rogue, this.getVsRogue1(), this.getVsRogue2());
 
@@ -55,6 +83,8 @@ public final class Wizard extends Jucator {
     //Wizard vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
+        this.strategie();
+        pyromancer.strategie();
         pyromancer.atacaP(this, pyromancer.getVsWizard1());
         this.atacaW(pyromancer, this.getVsPyromancer1(), this.getVsPyromancer2());
 
@@ -64,6 +94,8 @@ public final class Wizard extends Jucator {
     //Wizard vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
+        this.strategie();
+        wizard.strategie();
         wizard.atacaW(this, wizard.getVsWizard1(), wizard.getVsWizard2());
         this.atacaW(wizard, this.getVsWizard1(), this.getVsWizard2());
 

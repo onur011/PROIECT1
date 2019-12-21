@@ -1,8 +1,11 @@
 package jucatori;
 
+import ingeri.Inger;
+import strategii.Context;
+import strategii.Strategia1R;
+import strategii.Strategia2R;
 import utile.Constante;
 
-import javax.xml.crypto.dsig.keyinfo.KeyName;
 import java.io.IOException;
 
 public final class Rogue extends Jucator implements Abilitati {
@@ -33,6 +36,24 @@ public final class Rogue extends Jucator implements Abilitati {
         this.setVsRogue2(Constante.R_LUPTA_R_ABL_2);
         this.setVsWizard2(Constante.R_LUPTA_W_ABL_2);
     }
+
+    @Override
+    public void strategie() {
+        if ((this.getHpInitial() / Constante.LIMITA_1_HP_R  < this.getHp())
+                && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_R)) {
+            Context context = new Context(new Strategia1R());
+            context.executaStrategie(this);
+        } else if (this.getHp() < this.getHpInitial() / Constante.LIMITA_1_HP_R) {
+            Context context = new Context(new Strategia2R());
+            context.executaStrategie(this);
+        }
+    }
+
+    @Override
+    public void alegeInger(final Inger inger) throws IOException {
+        inger.acceptaInger(this);
+    }
+
     @Override
     public void incepeLupta(final Jucator jucator) throws IOException {
         jucator.lupta(this);
@@ -41,6 +62,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
+        this.strategie();
+        knight.strategie();
         this.atacaR(knight, this.getVsKnight1(), this.getVsKnight2());
         knight.atacaK(this, knight.getVsRogue1(), knight.getVsRogue2());
 
@@ -50,6 +73,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
+        this.strategie();
+        rogue.strategie();
         this.atacaR(rogue, this.getVsRogue1(), this.getVsRogue2());
         rogue.atacaR(this, rogue.getVsRogue1(), rogue.getVsRogue2());
 
@@ -59,6 +84,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
+        this.strategie();
+        pyromancer.strategie();
         this.atacaR(pyromancer, this.getVsPyromancer1(), this.getVsPyromancer2());
         pyromancer.atacaP(this, pyromancer.getVsRogue1());
 
@@ -68,6 +95,8 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
+        this.strategie();
+        wizard.strategie();
         this.atacaR(wizard, this.getVsWizard1(), this.getVsWizard2());
         wizard.atacaW(this, wizard.getVsRogue1(), wizard.getVsRogue2());
 

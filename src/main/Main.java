@@ -47,6 +47,10 @@ public final class Main {
             fisier.write("~~ Round " + Integer.toString(i + 1) + " ~~\n");
             fisier.close();
 
+            for (Inger inger : ingeri.get(i)) {
+                inger.adaugaObserver(magician);
+            }
+
             for (j = 0; j < p; j++) {
                 //Se adauga observerul tuturor jucatorilor
                 jucatori.get(j).adaugaObserver(magician);
@@ -71,6 +75,15 @@ public final class Main {
             for (j = 0; j < p - 1; j++) {
                 for (k = j + 1; k < p; k++) {
                     jucatori.get(j).cineLupta(jucatori.get(k));
+                }
+            }
+
+            for (Inger inger : ingeri.get(i)) {
+                //Se norifica observatorii in legatura cu aparitia ingerului.
+                inger.spawn();
+
+                for (Jucator jucatorAux : jucatori) {
+                    jucatorAux.esteInger(inger);
                 }
             }
             BufferedWriter fisier1 = new BufferedWriter(new FileWriter(args[1], true));

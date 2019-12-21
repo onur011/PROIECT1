@@ -1,5 +1,6 @@
 package jucatori;
 
+import ingeri.Inger;
 import magician.Observer;
 import magician.Subject;
 import utile.Constante;
@@ -506,14 +507,59 @@ public abstract class Jucator implements Subject {
         }
     }
 
-    public  void inceputDeRunda() {
-
+    /**
+     * @param ind Se modifica coeficientii abilitatii 1 cu suma cu ind.
+     */
+    public void modificaCoeficienti1(final float ind) {
+        this.vsKnight1 += ind;
+        this.vsPyromancer1 += ind;
+        this.vsRogue1 += ind;
+        this.vsWizard1 += ind;
     }
 
+    /**
+     * @param ind Se modifica coeficientii abilitatii 2 cu suma cu ind.
+     */
+    public void modificaCoeficienti2(final float ind) {
+        this.vsKnight2 += ind;
+        this.vsPyromancer2 += ind;
+        this.vsRogue2 += ind;
+        this.vsWizard2 += ind;
+    }
+
+    /**
+     * Se verifica daca ingerul este pe pozitia jucatorului.
+     */
+    public void esteInger(final Inger inger) throws IOException {
+        //ingerul spawner se aplica doar pe jucatorii morti
+        if (this.x == inger.getX() && this.y == inger.getY() && this.mort
+        && inger.getTipInger().compareTo("Spawner") == 0) {
+            this.alegeInger(inger);
+        } else if (this.x == inger.getX() && this.y == inger.getY() && !this.mort) {
+            this.alegeInger(inger);
+        }
+    }
+
+    /**
+     * Se verifica daca jucatorul a fost omorat de inger.
+     */
+    public void omoratInger() throws IOException {
+        if (this.hp <= 0) {
+            String str = "Player " + this.numeCaracter() + " " + this.getId()
+            + " was killed by an angle";
+            this.notificaObserveri(str);
+            this.mort = true;
+        }
+    }
+
+    public  void inceputDeRunda() {
+    }
+
+    public abstract void strategie();
+    public abstract void alegeInger(Inger inger) throws IOException;
     public abstract void incepeLupta(Jucator jucator) throws IOException;
     public abstract void lupta(Knight knight) throws IOException;
     public abstract void lupta(Rogue rogue) throws IOException;
     public abstract void lupta(Pyromancer pyromancer) throws IOException;
     public abstract void lupta(Wizard wizard) throws IOException;
-
 }
