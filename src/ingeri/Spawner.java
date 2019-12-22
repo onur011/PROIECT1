@@ -17,30 +17,42 @@ public class Spawner extends Inger {
         setBun(true);
     }
 
+    /**
+     * knight cu Spawner.
+     */
     @Override
-    public void acceptaInger(Knight knight) throws IOException {
+    public void acceptaInger(final Knight knight) throws IOException {
         knight.setMort(false);
         knight.setHp(Constante.SPAWNER_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
 
     }
 
+    /**
+     * pyromancer cu Spawner.
+     */
     @Override
-    public void acceptaInger(Pyromancer pyromancer) throws IOException {
+    public void acceptaInger(final Pyromancer pyromancer) throws IOException {
         pyromancer.setMort(false);
         pyromancer.setHp(Constante.SPAWNER_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
     }
 
+    /**
+     * rogue cu Spawner.
+     */
     @Override
-    public void acceptaInger(Rogue rogue) throws IOException {
+    public void acceptaInger(final Rogue rogue) throws IOException {
         rogue.setMort(false);
         rogue.setHp(Constante.SPAWNER_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
     }
 
+    /**
+     * wizard cu Spawner.
+     */
     @Override
-    public void acceptaInger(Wizard wizard) throws IOException {
+    public void acceptaInger(final Wizard wizard) throws IOException {
         wizard.setMort(false);
         wizard.setHp(Constante.SPAWNER_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));

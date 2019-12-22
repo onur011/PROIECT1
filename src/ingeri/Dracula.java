@@ -17,6 +17,9 @@ public class Dracula extends Inger {
         setBun(false);
     }
 
+    /**
+     * knight cu Dracula.
+     */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
         knight.modificaCoeficienti1(Constante.DRACULA_K);
@@ -26,6 +29,9 @@ public class Dracula extends Inger {
         knight.omoratInger();
     }
 
+    /**
+     * pyromancer cu Dracula.
+     */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
         pyromancer.modificaCoeficienti1(Constante.DRACULA_P);
@@ -34,6 +40,9 @@ public class Dracula extends Inger {
         pyromancer.omoratInger();
     }
 
+    /**
+     * rogue cu Dracula.
+     */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
         rogue.modificaCoeficienti1(Constante.DRACULA_R);
@@ -43,6 +52,9 @@ public class Dracula extends Inger {
         rogue.omoratInger();
     }
 
+    /**
+     * wizard cu Dracula.
+     */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
         wizard.modificaCoeficienti1(Constante.DRACULA_W);

@@ -17,6 +17,9 @@ public class DarkAngel extends Inger {
         setBun(false);
     }
 
+    /**
+     * knight cu DarkAngel.
+     */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
         knight.setHp(knight.getHp() - Constante.DARKANGEL_K);
@@ -24,6 +27,9 @@ public class DarkAngel extends Inger {
         knight.omoratInger();
     }
 
+    /**
+     * pyromancer cu DarkAngel.
+     */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
         pyromancer.setHp(pyromancer.getHp() - Constante.DARKANGEL_P);
@@ -31,6 +37,9 @@ public class DarkAngel extends Inger {
         pyromancer.omoratInger();
     }
 
+    /**
+     * rogue cu DarkAngel.
+     */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
         rogue.setHp(rogue.getHp() - Constante.DARKANGEL_R);
@@ -38,6 +47,9 @@ public class DarkAngel extends Inger {
         rogue.omoratInger();
     }
 
+    /**
+     * wizard cu DarkAngel.
+     */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
         wizard.setHp(wizard.getHp() - Constante.DARKANGEL_W);

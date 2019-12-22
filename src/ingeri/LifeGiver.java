@@ -24,6 +24,7 @@ public class LifeGiver extends Inger {
     public void acceptaInger(final Knight knight) throws IOException {
         knight.setHp(knight.getHp() + Constante.LIFEGIVER_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
+        knight.verificareHp();
     }
 
     /**
@@ -33,6 +34,7 @@ public class LifeGiver extends Inger {
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
         pyromancer.setHp(pyromancer.getHp() + Constante.LIFEGIVER_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
+        pyromancer.verificareHp();
     }
 
     /**
@@ -42,6 +44,7 @@ public class LifeGiver extends Inger {
     public void acceptaInger(final Rogue rogue) throws IOException {
         rogue.setHp(rogue.getHp() + Constante.LIFEGIVER_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
+        rogue.verificareHp();
     }
 
     /**
@@ -51,5 +54,6 @@ public class LifeGiver extends Inger {
     public void acceptaInger(final Wizard wizard) throws IOException {
         wizard.setHp(wizard.getHp() + Constante.LIFEGIVER_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
+        wizard.verificareHp();
     }
 }

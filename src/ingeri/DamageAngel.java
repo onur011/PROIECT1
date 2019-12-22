@@ -17,6 +17,9 @@ public class DamageAngel extends Inger {
         setBun(true);
     }
 
+    /**
+     * knight cu DamageAngel.
+     */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
         knight.modificaCoeficienti1(Constante.DAMAGEANGEL_K);
@@ -25,6 +28,9 @@ public class DamageAngel extends Inger {
         knight.omoratInger();
     }
 
+    /**
+     * pyromancer cu DamageAngel.
+     */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
         pyromancer.modificaCoeficienti1(Constante.DAMAGEANGEL_P);
@@ -32,6 +38,9 @@ public class DamageAngel extends Inger {
         pyromancer.omoratInger();
     }
 
+    /**
+     * rogue cu DamageAngel.
+     */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
         rogue.modificaCoeficienti1(Constante.DAMAGEANGEL_R);
@@ -40,6 +49,9 @@ public class DamageAngel extends Inger {
         rogue.omoratInger();
     }
 
+    /**
+     * wizard cu DamageAngel.
+     */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
         wizard.modificaCoeficienti1(Constante.DAMAGEANGEL_W);

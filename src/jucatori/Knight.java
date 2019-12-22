@@ -47,7 +47,7 @@ public final class Knight extends Jucator implements Abilitati {
             context.executaStrategie(this);
         }
         //Acesta nu se modifica pentru ca initial este 0;
-        this.setVsKnight1(0f);
+        this.setVsKnight1(1f);
     }
 
     public void alegeInger(final Inger inger) throws IOException {
@@ -140,11 +140,11 @@ public final class Knight extends Jucator implements Abilitati {
             dmg1 = jucator.getHp();
             dmgFaraBonusRasa += dmg1;
         } else {
-            dmg1 = this.abilitate1() * bonusTeren * bonusRasa1;
+            dmg1 = Math.round(this.abilitate1() * bonusTeren) * bonusRasa1;
             dmgFaraBonusRasa += Math.round(this.abilitate1() * bonusTeren);
         }
         //Slam
-        dmg2 = this.abilitate2() * bonusTeren * bonusRasa2;
+        dmg2 = Math.round(this.abilitate2() * bonusTeren) * bonusRasa2;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
         jucator.setDmgO((int) Constante.ZERO);

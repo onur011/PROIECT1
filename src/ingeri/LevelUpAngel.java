@@ -1,7 +1,12 @@
 package ingeri;
 
 
-import jucatori.*;
+
+import jucatori.Knight;
+import jucatori.Pyromancer;
+import jucatori.Rogue;
+import jucatori.Wizard;
+import jucatori.Jucator;
 import utile.Constante;
 
 import java.io.IOException;
@@ -20,10 +25,10 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
-        this.lvUp(knight, Constante.HP_NIVEL_K);
         knight.modificaCoeficienti1(Constante.LEVELUPANGEL_K);
         knight.modificaCoeficienti2(Constante.LEVELUPANGEL_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
+        this.lvUp(knight, Constante.HP_NIVEL_K);
     }
 
     /**
@@ -31,9 +36,9 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
-        this.lvUp(pyromancer, Constante.HP_NIVEL_P);
         pyromancer.modificaCoeficienti1(Constante.LEVELUPANGEL_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
+        this.lvUp(pyromancer, Constante.HP_NIVEL_P);
     }
 
     /**
@@ -41,10 +46,10 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
-        this.lvUp(rogue, Constante.HP_NIVEL_R);
         rogue.modificaCoeficienti1(Constante.LEVELUPANGEL_R);
         rogue.modificaCoeficienti2(Constante.LEVELUPANGEL_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
+        this.lvUp(rogue, Constante.HP_NIVEL_R);
     }
 
     /**
@@ -52,10 +57,10 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
-        this.lvUp(wizard, Constante.HP_NIVEL_W);
         wizard.modificaCoeficienti1(Constante.LEVELUPANGEL_W);
         wizard.modificaCoeficienti2(Constante.LEVELUPANGEL_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
+        this.lvUp(wizard, Constante.HP_NIVEL_W);
     }
 
     /**

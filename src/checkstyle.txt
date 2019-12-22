@@ -1,4 +1,2 @@
 Starting audit...
-[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/CitireIntrare.java:62:30: 'aux' hides a field. [HiddenField]
 Audit done.
-Checkstyle ends with 1 errors.

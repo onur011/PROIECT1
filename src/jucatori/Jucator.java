@@ -508,6 +508,15 @@ public abstract class Jucator implements Subject {
     }
 
     /**
+     * Se verifica daca hp depaseste hp maxim.
+     */
+    public void verificareHp() {
+        if (this.hp > this.hpInitial) {
+            this.hp = this.hpInitial;
+        }
+    }
+
+    /**
      * @param ind Se modifica coeficientii abilitatii 1 cu suma cu ind.
      */
     public void modificaCoeficienti1(final float ind) {
@@ -546,7 +555,7 @@ public abstract class Jucator implements Subject {
     public void omoratInger() throws IOException {
         if (this.hp <= 0) {
             String str = "Player " + this.numeCaracter() + " " + this.getId()
-            + " was killed by an angle";
+            + " was killed by an angel";
             this.notificaObserveri(str);
             this.mort = true;
         }

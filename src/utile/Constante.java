@@ -155,6 +155,16 @@ public final class Constante {
     public static final int DRACULA_HP_R = 35;
     public static final int DRACULA_HP_W = 20;
 
+    //Constante GoodBoy
+    public static final float GOODBOY_K = 0.4f;
+    public static final float GOODBOY_P = 0.5f;
+    public static final float GOODBOY_R = 0.4f;
+    public static final float GOODBOY_W = 0.3f;
+    public static final int GOODBOY_HP_K = 20;
+    public static final int GOODBOY_HP_P = 30;
+    public static final int GOODBOY_HP_R = 40;
+    public static final int GOODBOY_HP_W = 50;
+
     //Constante SmallAngel
     public static final float SMALLANGEL_K = 0.1f;
     public static final float SMALLANGEL_P = 0.15f;
