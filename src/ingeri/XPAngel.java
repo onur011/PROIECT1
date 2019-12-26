@@ -22,6 +22,9 @@ public class XPAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
+        if (knight.getMort()) {
+            return;
+        }
         knight.setXp(knight.getXp() + Constante.XPANGEL_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
         knight.nouNivel(Constante.HP_NIVEL_K);
@@ -32,6 +35,9 @@ public class XPAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
+        if (pyromancer.getMort()) {
+            return;
+        }
         pyromancer.setXp(pyromancer.getXp() + Constante.XPANGEL_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
         pyromancer.nouNivel(Constante.HP_NIVEL_P);
@@ -42,6 +48,9 @@ public class XPAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
+        if (rogue.getMort()) {
+            return;
+        }
         rogue.setXp(rogue.getXp() + Constante.XPANGEL_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
         rogue.nouNivel(Constante.HP_NIVEL_R);
@@ -52,6 +61,9 @@ public class XPAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
+        if (wizard.getMort()) {
+            return;
+        }
         wizard.setXp(wizard.getXp() + Constante.XPANGEL_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
         wizard.nouNivel(Constante.HP_NIVEL_W);

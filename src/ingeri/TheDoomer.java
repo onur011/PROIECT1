@@ -21,6 +21,9 @@ public class TheDoomer extends Inger {
      */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
+        if (knight.getMort()) {
+            return;
+        }
         knight.setHp(0);
         knight.notificaObserveri(this.seteazaOutput(knight));
         knight.omoratInger();
@@ -31,6 +34,9 @@ public class TheDoomer extends Inger {
      */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
+        if (pyromancer.getMort()) {
+            return;
+        }
         pyromancer.setHp(0);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
         pyromancer.omoratInger();
@@ -41,6 +47,9 @@ public class TheDoomer extends Inger {
      */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
+        if (rogue.getMort()) {
+            return;
+        }
         rogue.setHp(0);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
         rogue.omoratInger();
@@ -51,6 +60,9 @@ public class TheDoomer extends Inger {
      */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
+        if (wizard.getMort()) {
+            return;
+        }
         wizard.setHp(0);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
         wizard.omoratInger();

@@ -36,6 +36,10 @@ public final class Wizard extends Jucator {
 
     @Override
     public void strategie() {
+        if (this.getParalizat()) {
+            return;
+        }
+
         if ((this.getHpInitial() / Constante.LIMITA_1_HP_W  < this.getHp())
                 && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_W)) {
             Context context = new Context(new Strategia1W());
@@ -124,7 +128,8 @@ public final class Wizard extends Jucator {
             if (procent2 > Constante.PROCENT_MAX_ABL_2_W) {
                 procent2 = Constante.PROCENT_MAX_ABL_2_W;
             }
-            dmg2 = procent2 * this.getDmgFaraBonus() * bonusTeren * bonusRasa2;
+            dmg2 = procent2 * Math.round(Math.round(this.getDmgFaraBonus() * bonusTeren)
+                                         * bonusRasa2);
         }
 
         //Se adauga dmg pe care trebuie sa il ia jucator

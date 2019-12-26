@@ -34,6 +34,21 @@ public abstract class Jucator implements Subject {
     private float vsPyromancer2;
     private float vsRogue2;
     private float vsWizard2;
+    private int xpInitial;
+
+    /**
+     * @param xpInitial se seteaza xp de la inceputul rundei.
+     */
+    public void setXpInitial( final int xpInitial) {
+        this.xpInitial = xpInitial;
+    }
+
+    /**
+     * @return returneaza xp de la inceputul rundei.
+     */
+    public int getXpInitial() {
+        return this.xpInitial;
+    }
 
     /**
      * @param ind Se seteaza modificator de versus knight.
@@ -299,29 +314,30 @@ public abstract class Jucator implements Subject {
         if (this.hp <= 0) {
             this.mort = true;
             String str = "Player " + this.numeCaracter() + " " + this.getId() + " was killed by "
-            + jucator.numeCaracter() + " " + jucator.getId();
+                    + jucator.numeCaracter() + " " + jucator.getId();
             this.notificaObserveri(str);
         }
 
         if (jucator.hp <= 0) {
             jucator.mort = true;
             String str = "Player " + jucator.numeCaracter() + " " + jucator.getId()
-            + " was killed by " + this.numeCaracter() + " " + this.getId();
+                    + " was killed by " + this.numeCaracter() + " " + this.getId();
             jucator.notificaObserveri(str);
         }
         //Daca unul este mort,se calculeaza xp pentru celalalt.
         if (jucator.mort) {
             xpj1 += Math.max(0, Constante.XP - (this.nivel - jucator.nivel)
-                                      * Constante.XP_NIVEL);
+                    * Constante.XP_NIVEL);
         }
 
         if (this.mort) {
             xpj2 += Math.max(0, Constante.XP - (jucator.nivel - this.nivel)
-                                         * Constante.XP_NIVEL);
+                    * Constante.XP_NIVEL);
         }
         //Se adauga xp si dmg primit este trecut pe 0;
         this.xp = xpj1;
         jucator.xp = xpj2;
+
         this.damage = (int) Constante.ZERO;
         jucator.damage = (int) Constante.ZERO;
     }
@@ -540,11 +556,7 @@ public abstract class Jucator implements Subject {
      * Se verifica daca ingerul este pe pozitia jucatorului.
      */
     public void esteInger(final Inger inger) throws IOException {
-        //ingerul spawner se aplica doar pe jucatorii morti
-        if (this.x == inger.getX() && this.y == inger.getY() && this.mort
-        && inger.getTipInger().compareTo("Spawner") == 0) {
-            this.alegeInger(inger);
-        } else if (this.x == inger.getX() && this.y == inger.getY() && !this.mort) {
+        if (this.x == inger.getX() && this.y == inger.getY()) {
             this.alegeInger(inger);
         }
     }
@@ -559,6 +571,13 @@ public abstract class Jucator implements Subject {
             this.notificaObserveri(str);
             this.mort = true;
         }
+    }
+
+    /**
+     * Returneaza daca jucatorul este paralizat sau nu.
+     */
+    public boolean getParalizat() {
+        return this.paralizat;
     }
 
     public  void inceputDeRunda() {

@@ -25,8 +25,12 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
+        if (knight.getMort()) {
+            return;
+        }
         knight.modificaCoeficienti1(Constante.LEVELUPANGEL_K);
         knight.modificaCoeficienti2(Constante.LEVELUPANGEL_K);
+        knight.setVsKnight1(1f);
         knight.notificaObserveri(this.seteazaOutput(knight));
         this.lvUp(knight, Constante.HP_NIVEL_K);
     }
@@ -36,6 +40,9 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
+        if (pyromancer.getMort()) {
+            return;
+        }
         pyromancer.modificaCoeficienti1(Constante.LEVELUPANGEL_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
         this.lvUp(pyromancer, Constante.HP_NIVEL_P);
@@ -46,6 +53,9 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
+        if (rogue.getMort()) {
+            return;
+        }
         rogue.modificaCoeficienti1(Constante.LEVELUPANGEL_R);
         rogue.modificaCoeficienti2(Constante.LEVELUPANGEL_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
@@ -57,6 +67,9 @@ public class LevelUpAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
+        if (wizard.getMort()) {
+            return;
+        }
         wizard.modificaCoeficienti1(Constante.LEVELUPANGEL_W);
         wizard.modificaCoeficienti2(Constante.LEVELUPANGEL_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
@@ -71,6 +84,9 @@ public class LevelUpAngel extends Inger {
         int aux = jucator.getXp();
         int nivel = aux / Constante.XP_PER_NIVEL;
         nivel++;
+        if ( nivel == 1) {
+            nivel = 5;
+        }
         jucator.setXp(nivel * Constante.XP_PER_NIVEL);
         //Se modifica nivelul si hp jucatorului.
         jucator.nouNivel(hpNivelNou);

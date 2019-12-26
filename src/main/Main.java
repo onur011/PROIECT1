@@ -55,6 +55,8 @@ public final class Main {
                 //Se adauga observerul tuturor jucatorilor
                 jucatori.get(j).adaugaObserver(magician);
                 jucatori.get(j).inceputDeRunda();
+                //Se seteaza xp de la inceputul rundei.
+                jucatori.get(j).setXpInitial(jucatori.get(j).getXp());
                 //Daca jucatorul nu este mort
                 if (!jucatori.get(j).getMort()) {
                     //Setam dmg fara bonus pe 0
@@ -66,8 +68,6 @@ public final class Main {
                                                 charAt(jucatori.get(j).getY()));
                     //Se scade dmg de overtime
                     jucatori.get(j).overtime();
-                    //Se verifica cat timp este jucatorul paralizat
-                    jucatori.get(j).paralizatRunda();
                 }
             }
 
@@ -93,6 +93,8 @@ public final class Main {
             //Se sterge observerul tuturor jucatorilor.
             for (j = 0; j < p; j++) {
                 jucatori.get(j).stergeObserver(magician);
+                //Se verifica cat timp este jucatorul paralizat
+                jucatori.get(j).paralizatRunda();
             }
 
         }

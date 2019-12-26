@@ -22,8 +22,12 @@ public class DamageAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
+        if (knight.getMort()) {
+            return;
+        }
         knight.modificaCoeficienti1(Constante.DAMAGEANGEL_K);
         knight.modificaCoeficienti2(Constante.DAMAGEANGEL_K);
+        knight.setVsKnight1(1f);
         knight.notificaObserveri(this.seteazaOutput(knight));
         knight.omoratInger();
     }
@@ -33,6 +37,9 @@ public class DamageAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
+        if (pyromancer.getMort()) {
+            return;
+        }
         pyromancer.modificaCoeficienti1(Constante.DAMAGEANGEL_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
         pyromancer.omoratInger();
@@ -43,6 +50,9 @@ public class DamageAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
+        if (rogue.getMort()) {
+            return;
+        }
         rogue.modificaCoeficienti1(Constante.DAMAGEANGEL_R);
         rogue.modificaCoeficienti2(Constante.DAMAGEANGEL_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
@@ -54,6 +64,9 @@ public class DamageAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
+        if (wizard.getMort()) {
+            return;
+        }
         wizard.modificaCoeficienti1(Constante.DAMAGEANGEL_W);
         wizard.modificaCoeficienti2(Constante.DAMAGEANGEL_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));

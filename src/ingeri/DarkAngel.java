@@ -22,6 +22,9 @@ public class DarkAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
+        if (knight.getMort()) {
+            return;
+        }
         knight.setHp(knight.getHp() - Constante.DARKANGEL_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
         knight.omoratInger();
@@ -32,6 +35,9 @@ public class DarkAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
+        if (pyromancer.getMort()) {
+            return;
+        }
         pyromancer.setHp(pyromancer.getHp() - Constante.DARKANGEL_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
         pyromancer.omoratInger();
@@ -42,6 +48,9 @@ public class DarkAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
+        if (rogue.getMort()) {
+            return;
+        }
         rogue.setHp(rogue.getHp() - Constante.DARKANGEL_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
         rogue.omoratInger();
@@ -52,6 +61,9 @@ public class DarkAngel extends Inger {
      */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
+        if (wizard.getMort()) {
+            return;
+        }
         wizard.setHp(wizard.getHp() - Constante.DARKANGEL_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
         wizard.omoratInger();

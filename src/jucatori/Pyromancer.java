@@ -32,6 +32,10 @@ public final class Pyromancer extends Jucator implements Abilitati {
 
     @Override
     public void strategie() {
+        if (this.getParalizat()) {
+            return;
+        }
+
         if ((this.getHpInitial() / Constante.LIMITA_1_HP_P  < this.getHp())
                 && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_P)) {
             Context context = new Context(new Strategia1P());

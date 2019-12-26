@@ -22,8 +22,12 @@ public class Dracula extends Inger {
      */
     @Override
     public void acceptaInger(final Knight knight) throws IOException {
+        if (knight.getMort()) {
+            return;
+        }
         knight.modificaCoeficienti1(Constante.DRACULA_K);
         knight.modificaCoeficienti2(Constante.DRACULA_K);
+        knight.setVsKnight1(1f);
         knight.setHp(knight.getHp() - Constante.DRACULA_HP_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
         knight.omoratInger();
@@ -34,6 +38,9 @@ public class Dracula extends Inger {
      */
     @Override
     public void acceptaInger(final Pyromancer pyromancer) throws IOException {
+        if (pyromancer.getMort()) {
+            return;
+        }
         pyromancer.modificaCoeficienti1(Constante.DRACULA_P);
         pyromancer.setHp(pyromancer.getHp() - Constante.DRACULA_HP_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
@@ -45,6 +52,9 @@ public class Dracula extends Inger {
      */
     @Override
     public void acceptaInger(final Rogue rogue) throws IOException {
+        if (rogue.getMort()) {
+            return;
+        }
         rogue.modificaCoeficienti1(Constante.DRACULA_R);
         rogue.modificaCoeficienti2(Constante.DRACULA_R);
         rogue.setHp(rogue.getHp() - Constante.DRACULA_HP_R);
@@ -57,6 +67,9 @@ public class Dracula extends Inger {
      */
     @Override
     public void acceptaInger(final Wizard wizard) throws IOException {
+        if (wizard.getMort()) {
+            return;
+        }
         wizard.modificaCoeficienti1(Constante.DRACULA_W);
         wizard.modificaCoeficienti2(Constante.DRACULA_W);
         wizard.setHp(wizard.getHp() - Constante.DRACULA_HP_W);

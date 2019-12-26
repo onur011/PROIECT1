@@ -117,6 +117,11 @@ public abstract class Inger implements Subject {
         this.notificaObserveri(str);
     }
 
+    protected String outputSpawn(final Jucator jucator){
+        return "Player " + jucator.numeCaracter() + " " + jucator.getId()
+        + " was brought to life by an angel";
+    }
+
     public abstract void acceptaInger(Knight knight) throws IOException;
     public abstract void acceptaInger(Pyromancer pyromancer) throws IOException;
     public abstract void acceptaInger(Rogue rogue) throws IOException;

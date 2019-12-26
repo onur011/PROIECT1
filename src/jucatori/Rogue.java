@@ -39,6 +39,10 @@ public final class Rogue extends Jucator implements Abilitati {
 
     @Override
     public void strategie() {
+        if (this.getParalizat()) {
+            return;
+        }
+
         if ((this.getHpInitial() / Constante.LIMITA_1_HP_R  < this.getHp())
                 && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_R)) {
             Context context = new Context(new Strategia1R());
@@ -143,7 +147,7 @@ public final class Rogue extends Jucator implements Abilitati {
         dmg2 = this.abilitate2() * bonusTeren * bonusRasa2;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
-        jucator.setTimpParalizat(runde);
+        jucator.setTimpParalizat(runde + 1);
         jucator.setParalizat(true);
         jucator.setDmgO(Math.round(dmg2));
         jucator.setTimeDmgO(runde);

@@ -37,6 +37,9 @@ public final class Knight extends Jucator implements Abilitati {
     //Se aplica strategia pentru Knight.
     @Override
     public void strategie() {
+        if (this.getParalizat()) {
+            return;
+        }
 
         if ((this.getHpInitial() / Constante.LIMITA_1_HP_K  < this.getHp())
         && (this.getHp() < this.getHpInitial() / Constante.LIMITA_2_HP_K)) {
@@ -121,7 +124,7 @@ public final class Knight extends Jucator implements Abilitati {
 
     //Functia in care atacatorul este Knight
     public void atacaK(final Jucator jucator, final float bonusRasa1, final float bonusRasa2) {
-        float dmg1, dmg2, bonusTeren = Constante.BONUS_TEREN_NEUTRU, limita, procent,
+        float dmg1 = 0f, dmg2 = 0f, bonusTeren = Constante.BONUS_TEREN_NEUTRU, limita, procent,
         dmgFaraBonusRasa = Constante.ZERO;
 
         //Bonusul de teren
@@ -138,11 +141,10 @@ public final class Knight extends Jucator implements Abilitati {
         //Execute
         if (jucator.getHp() < limita) {
             dmg1 = jucator.getHp();
-            dmgFaraBonusRasa += dmg1;
         } else {
             dmg1 = Math.round(this.abilitate1() * bonusTeren) * bonusRasa1;
-            dmgFaraBonusRasa += Math.round(this.abilitate1() * bonusTeren);
         }
+        dmgFaraBonusRasa += Math.round(this.abilitate1() * bonusTeren);
         //Slam
         dmg2 = Math.round(this.abilitate2() * bonusTeren) * bonusRasa2;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
@@ -150,7 +152,7 @@ public final class Knight extends Jucator implements Abilitati {
         jucator.setDmgO((int) Constante.ZERO);
         jucator.setTimeDmgO((int) Constante.ZERO);
         jucator.setParalizat(true);
-        jucator.setTimpParalizat(Constante.PARALIZAT_TIMP_K);
+        jucator.setTimpParalizat(Constante.PARALIZAT_TIMP_K + 1);
 
          //Se adauga dmg pe care trebuie sa il ia jucator
         jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));
