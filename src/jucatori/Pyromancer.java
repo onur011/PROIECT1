@@ -58,8 +58,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
-        this.strategie();
-        knight.strategie();
+
         this.atacaP(knight, this.getVsKnight1());
         knight.atacaK(this, knight.getVsPyromancer1(), knight.getVsPyromancer2());
 
@@ -69,8 +68,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
-        this.strategie();
-        rogue.strategie();
+
         this.atacaP(rogue, this.getVsRogue1());
         rogue.atacaR(this, rogue.getVsPyromancer1(), rogue.getVsPyromancer2());
 
@@ -80,8 +78,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
-        this.strategie();
-        pyromancer.strategie();
+
         this.atacaP(pyromancer, this.getVsPyromancer1());
         pyromancer.atacaP(this, pyromancer.getVsPyromancer1());
 
@@ -91,8 +88,7 @@ public final class Pyromancer extends Jucator implements Abilitati {
     //Pyromancer vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
-        this.strategie();
-        wizard.strategie();
+
         this.atacaP(wizard, this.getVsWizard1());
         wizard.atacaW(this, wizard.getVsPyromancer1(), wizard.getVsPyromancer2());
 
@@ -125,14 +121,14 @@ public final class Pyromancer extends Jucator implements Abilitati {
             bonusTeren = Constante.BONUS_TEREN_P;
         }
         //Fireblast
-        dmg1 = this.abilitate1() * bonusTeren * bonusRasa;
+        dmg1 = Math.round(this.abilitate1() * bonusTeren) * bonusRasa;
         dmgFaraBonusRasa += Math.round(this.abilitate1() * bonusTeren);
 
         //Ignite
-        dmg2 = this.abilitate2() * bonusTeren * bonusRasa;
+        dmg2 = Math.round(this.abilitate2() * bonusTeren) * bonusRasa;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
-        dmg2periodic = (Constante.OVERTIME_P + Constante.OVERTIME_NIVEL_P * this.getNivel())
-        * bonusTeren * bonusRasa;
+        dmg2periodic = Math.round((Constante.OVERTIME_P + Constante.OVERTIME_NIVEL_P * this.getNivel())
+        * bonusTeren )* bonusRasa;
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
         jucator.setTimpParalizat((int) Constante.ZERO);
         jucator.setParalizat(false);

@@ -3,6 +3,11 @@ Starting audit...
 [ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/ingeri/Inger.java:120:56: '{' is not preceded with whitespace. [WhitespaceAround]
 [ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/ingeri/LevelUpAngel.java:87:13: '(' is followed by whitespace. [ParenPad]
 [ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/ingeri/LevelUpAngel.java:88:21: '5' is a magic number. [MagicNumber]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/jucatori/Pyromancer.java:130: Line is longer than 100 characters (found 103). [LineLength]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/jucatori/Pyromancer.java:131:21: ')' is preceded with whitespace. [ParenPad]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/jucatori/Pyromancer.java:131:23: '*' is not preceded with whitespace. [WhitespaceAround]
 [ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/jucatori/Jucator.java:42:30: '(' is followed by whitespace. [ParenPad]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Main.java:66:23: 'if' is not followed by whitespace. [WhitespaceAround]
+[ERROR] /home/onur/Desktop/Facultate/Anul_2/Semetrul_1/POO/PROIECT1/src/main/Main.java:66:24: '(' is followed by whitespace. [ParenPad]
 Audit done.
-Checkstyle ends with 5 errors.
+Checkstyle ends with 10 errors.

@@ -66,8 +66,7 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
-        this.strategie();
-        knight.strategie();
+
         this.atacaR(knight, this.getVsKnight1(), this.getVsKnight2());
         knight.atacaK(this, knight.getVsRogue1(), knight.getVsRogue2());
 
@@ -77,8 +76,7 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
-        this.strategie();
-        rogue.strategie();
+
         this.atacaR(rogue, this.getVsRogue1(), this.getVsRogue2());
         rogue.atacaR(this, rogue.getVsRogue1(), rogue.getVsRogue2());
 
@@ -88,8 +86,7 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
-        this.strategie();
-        pyromancer.strategie();
+
         this.atacaR(pyromancer, this.getVsPyromancer1(), this.getVsPyromancer2());
         pyromancer.atacaP(this, pyromancer.getVsRogue1());
 
@@ -99,8 +96,7 @@ public final class Rogue extends Jucator implements Abilitati {
     //Rogue vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
-        this.strategie();
-        wizard.strategie();
+
         this.atacaR(wizard, this.getVsWizard1(), this.getVsWizard2());
         wizard.atacaW(this, wizard.getVsRogue1(), wizard.getVsRogue2());
 
@@ -140,11 +136,11 @@ public final class Rogue extends Jucator implements Abilitati {
         this.numarLovituri++;
 
         //Backstab
-        dmg1 = this.abilitate1() * critica * bonusTeren * bonusRasa1;
-        dmgFaraBonusRasa += Math.round(this.abilitate1() * critica * bonusTeren);
+        dmg1 = Math.round(Math.round(this.abilitate1() * bonusRasa1) * bonusTeren) * critica;
+        dmgFaraBonusRasa += Math.round(Math.round(this.abilitate1() * bonusTeren) * critica);
 
         //Paralysis
-        dmg2 = this.abilitate2() * bonusTeren * bonusRasa2;
+        dmg2 = Math.round(this.abilitate2() * bonusRasa2) * bonusTeren;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
         jucator.setTimpParalizat(runde + 1);

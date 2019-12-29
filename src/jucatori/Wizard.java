@@ -65,8 +65,7 @@ public final class Wizard extends Jucator {
     //Wizard vs Knight
     @Override
     public void lupta(final Knight knight) throws IOException {
-        this.strategie();
-        knight.strategie();
+
         knight.atacaK(this, knight.getVsWizard1(), knight.getVsWizard2());
         this.atacaW(knight, this.getVsKnight1(), this.getVsKnight2());
 
@@ -76,8 +75,7 @@ public final class Wizard extends Jucator {
     //Wizard vs Rogue
     @Override
     public void lupta(final Rogue rogue) throws IOException {
-        this.strategie();
-        rogue.strategie();
+
         rogue.atacaR(this, rogue.getVsWizard1(), rogue.getVsWizard2());
         this.atacaW(rogue, this.getVsRogue1(), this.getVsRogue2());
 
@@ -87,8 +85,7 @@ public final class Wizard extends Jucator {
     //Wizard vs Pyromancer
     @Override
     public void lupta(final Pyromancer pyromancer) throws IOException {
-        this.strategie();
-        pyromancer.strategie();
+
         pyromancer.atacaP(this, pyromancer.getVsWizard1());
         this.atacaW(pyromancer, this.getVsPyromancer1(), this.getVsPyromancer2());
 
@@ -98,8 +95,7 @@ public final class Wizard extends Jucator {
     //Wizard vs Wizard
     @Override
     public void lupta(final Wizard wizard) throws IOException {
-        this.strategie();
-        wizard.strategie();
+
         wizard.atacaW(this, wizard.getVsWizard1(), wizard.getVsWizard2());
         this.atacaW(wizard, this.getVsWizard1(), this.getVsWizard2());
 

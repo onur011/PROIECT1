@@ -570,6 +570,7 @@ public abstract class Jucator implements Subject {
             + " was killed by an angel";
             this.notificaObserveri(str);
             this.mort = true;
+            this.setXpInitial(this.getXp());
         }
     }
 
