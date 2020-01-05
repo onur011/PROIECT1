@@ -104,7 +104,10 @@ public abstract class Inger implements Subject {
         this.notificaObserveri(str);
     }
 
-    public String outputSpawn(final Jucator jucator){
+    /**
+     * Afisare reinviere jucator.
+     */
+    public String outputSpawn(final Jucator jucator) {
         return "Player " + jucator.numeCaracter() + " " + jucator.getId()
         + " was brought to life by an angel";
     }

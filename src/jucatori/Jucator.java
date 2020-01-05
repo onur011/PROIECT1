@@ -39,7 +39,7 @@ public abstract class Jucator implements Subject {
     /**
      * @param xpInitial se seteaza xp de la inceputul rundei.
      */
-    public void setXpInitial( final int xpInitial) {
+    public void setXpInitial(final int xpInitial) {
         this.xpInitial = xpInitial;
     }
 

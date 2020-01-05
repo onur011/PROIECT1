@@ -84,8 +84,8 @@ public class LevelUpAngel extends Inger {
         int aux = jucator.getXp();
         int nivel = aux / Constante.XP_PER_NIVEL;
         nivel++;
-        if ( nivel == 1) {
-            nivel = 5;
+        if (nivel == 1) {
+            nivel = Constante.LVUP;
         }
         jucator.setXp(nivel * Constante.XP_PER_NIVEL);
         //Se modifica nivelul si hp jucatorului.

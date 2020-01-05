@@ -127,8 +127,8 @@ public final class Pyromancer extends Jucator implements Abilitati {
         //Ignite
         dmg2 = Math.round(this.abilitate2() * bonusTeren) * bonusRasa;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
-        dmg2periodic = Math.round((Constante.OVERTIME_P + Constante.OVERTIME_NIVEL_P * this.getNivel())
-        * bonusTeren )* bonusRasa;
+        dmg2periodic = Math.round((Constante.OVERTIME_P + Constante.OVERTIME_NIVEL_P
+        * this.getNivel()) * bonusTeren) * bonusRasa;
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
         jucator.setTimpParalizat((int) Constante.ZERO);
         jucator.setParalizat(false);

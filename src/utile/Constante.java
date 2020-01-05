@@ -87,6 +87,7 @@ public final class Constante {
     public static final int XP_PER_NIVEL = 50;
     public static final int XP = 200;
     public static final int XP_NIVEL = 40;
+    public static final int LVUP = 5;
     private static String out = null;
 
     //Constante Strategie Knight

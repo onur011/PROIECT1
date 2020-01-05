@@ -64,7 +64,7 @@ public final class Main {
                     jucatori.get(j).setDmgFaraBonus(0);
                     //Se muta jucatorii
                     jucatori.get(j).muta(runde.get(i).charAt(j));
-                    if( jucatori.get(j).getX() >= 0 && jucatori.get(j).getY() >= 0) {
+                    if (jucatori.get(j).getX() >= 0 && jucatori.get(j).getY() >= 0) {
                         //Se modifica tipul de teren pe care este jucatorul, dupa mutare.
                         jucatori.get(j).setTipTeren(harta.getHarta().get(jucatori.get(j).getX()).
                                 charAt(jucatori.get(j).getY()));
