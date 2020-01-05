@@ -148,7 +148,7 @@ public final class Knight extends Jucator implements Abilitati {
         jucator.setDmgO((int) Constante.ZERO);
         jucator.setTimeDmgO((int) Constante.ZERO);
         jucator.setParalizat(true);
-        jucator.setTimpParalizat(Constante.PARALIZAT_TIMP_K + 1);
+        jucator.setTimpParalizat(Constante.PARALIZAT_TIMP_K);
 
          //Se adauga dmg pe care trebuie sa il ia jucator
         jucator.setDamage(Math.round(dmg1) + Math.round(dmg2));

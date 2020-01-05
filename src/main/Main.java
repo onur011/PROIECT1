@@ -47,6 +47,7 @@ public final class Main {
             fisier.write("~~ Round " + Integer.toString(i + 1) + " ~~\n");
             fisier.close();
 
+            //Se adauga observer pentru ingeri
             for (Inger inger : ingeri.get(i)) {
                 inger.adaugaObserver(magician);
             }
@@ -72,6 +73,8 @@ public final class Main {
                     jucatori.get(j).overtime();
                     //Se aplica strategia
                     jucatori.get(j).strategie();
+                    //Se verifica cat timp este jucatorul paralizat
+                    jucatori.get(j).paralizatRunda();
                 }
             }
 
@@ -97,8 +100,6 @@ public final class Main {
             //Se sterge observerul tuturor jucatorilor.
             for (j = 0; j < p; j++) {
                 jucatori.get(j).stergeObserver(magician);
-                //Se verifica cat timp este jucatorul paralizat
-                jucatori.get(j).paralizatRunda();
             }
 
         }

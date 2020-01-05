@@ -30,7 +30,7 @@ public class GoodBoy extends Inger {
         knight.setVsKnight1(1f);
         knight.setHp(knight.getHp() + Constante.GOODBOY_HP_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
-        //knight.verificareHp();
+        knight.verificareHp();
     }
 
     /**
@@ -45,7 +45,7 @@ public class GoodBoy extends Inger {
         pyromancer.modificaCoeficienti2(Constante.GOODBOY_P);
         pyromancer.setHp(pyromancer.getHp() + Constante.GOODBOY_HP_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
-        //pyromancer.verificareHp();
+        pyromancer.verificareHp();
     }
 
     /**
@@ -60,7 +60,7 @@ public class GoodBoy extends Inger {
         rogue.modificaCoeficienti2(Constante.GOODBOY_R);
         rogue.setHp(rogue.getHp() + Constante.GOODBOY_HP_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
-        //rogue.verificareHp();
+        rogue.verificareHp();
     }
 
     /**
@@ -75,6 +75,6 @@ public class GoodBoy extends Inger {
         wizard.modificaCoeficienti2(Constante.GOODBOY_W);
         wizard.setHp(wizard.getHp() + Constante.GOODBOY_HP_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
-        //wizard.verificareHp();
+        wizard.verificareHp();
     }
 }

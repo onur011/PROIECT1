@@ -293,7 +293,7 @@ public abstract class Jucator implements Subject {
             this.hp = this.hpInitial + hpNivelNou * (this.nivel - nivelInitial);
             this.hpInitial = this.hp;
         }
-
+        //Se notifica observatorii
         for (int i = nivelInitial + 1; i <= this.nivel; i++) {
             String str = this.numeCaracter() + " " + this.id + " reached level "
             + Integer.toString(i);
@@ -313,6 +313,7 @@ public abstract class Jucator implements Subject {
         //Se verifica daca sunt morti.
         if (this.hp <= 0) {
             this.mort = true;
+            //Se notifica observatorii
             String str = "Player " + this.numeCaracter() + " " + this.getId() + " was killed by "
                     + jucator.numeCaracter() + " " + jucator.getId();
             this.notificaObserveri(str);
@@ -320,6 +321,7 @@ public abstract class Jucator implements Subject {
 
         if (jucator.hp <= 0) {
             jucator.mort = true;
+            //Se notifica observatorii
             String str = "Player " + jucator.numeCaracter() + " " + jucator.getId()
                     + " was killed by " + this.numeCaracter() + " " + this.getId();
             jucator.notificaObserveri(str);
@@ -340,12 +342,6 @@ public abstract class Jucator implements Subject {
 
         this.damage = (int) Constante.ZERO;
         jucator.damage = (int) Constante.ZERO;
-    }
-    /**
-     * @return Cate runde dureaza dmgO.
-     */
-    public int getTime() {
-        return this.timeDmgO;
     }
 
     /**

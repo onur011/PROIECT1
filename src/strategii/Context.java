@@ -10,7 +10,7 @@ public class Context {
     }
 
     /**
-     * @param jucator .
+     * Se aplica strategia specifica.
      */
     public void executaStrategie(final Jucator jucator) {
         strategie.strategie(jucator);

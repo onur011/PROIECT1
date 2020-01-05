@@ -69,6 +69,54 @@
 
         Membrul "dmgFaraBonus" memoreaza dmg primit de la adversar, fara bonusul de rasa. Este
         utilizat de Wizard pentru abilitatea Deflect.
+        
+        Proiect etapa 2 (am utilizat github in efectuarea temei)
+        
+        Harta: Este implementata utilizand design pattern-ul Singleton. Aceasta returneaza un 
+        arraylist de Stringuri.
+        
+        Se adauga 9 membri clasei Jucator (vsKnight1, vsPyromancer1, vsRogue1, vsWizard1,
+        vsKnight2, vsPyromancer2, vsRogue2, vsWizard2, care reprezinta modificatorii in functie
+        de rasa pentru prima si a doua abilitate, si membrul id care reprezinta pozitia initiala
+        in sirul de jucatori). Pentru Pyromancer se utilizeaza doar modificatorii in functie de 
+        rasa pentru prima abilitate, deoarece pyromancerul are aceleasi valori pentru ambele
+        abilitati.
+        
+        Clasele Knight, Pyromance, Rogue, Wizard contin un nou camp strategie(), in care se poate
+        apela una dintre cele doua strategi ale fiecarei clase, in functie de hp-ul jucatorului,
+        in cazul in care jucatorul nu este imobilizat.
+        
+        Pentru aplicarea strategiei se utilizeaza design pattern-ul Strategy.
+        
+        Magicianul reprezinta un observer, care scrie un string in fisierul de iesire atunci cand
+        este notificat. Pentru crearea magicianului se utilizeaza design pattern-urile Singleton 
+        si Factory.
+        
+        Magicianul este notificat atunci cand moare un jucator, se spawneaza un inger, creste 
+        nivelul unui jucator. De asemenea este notificat si cu efectul care il are ingerul asupra
+        jucatorului.
+        
+        Pentru crearea ingerilor se folosesc design pattern-urile Singleton si Factory.
+        In aplicarea ingerilor se utilizeaza Visitor, astfel fiecare inger poate ajuta/rani un
+        knight, pyromancer, rogue, wizzard (ingerii reprezinta elementele vizitate, iar jucatorii
+        sunt vizitatori).
+        
+        La inceputul rundei se creaza magicianul. Se adauga acesta ca observator pentru ingeri.
+        
+        Se afiseaza in fisierul de output runda curenta.
+        
+        Pe langa elementele de la prima etapa, acum se seteaza xp de la inceputul rundei, se adauga
+        obsrverul fiecarui jucator si se apeleaza strategia pentru fiecare jucator.
+        
+        Se verifica care jucatori se lupta.
+        
+        Se spawneaza ingerii. Pentru fiecare inger se notifica aparitia lui si se verifica daca
+        exista vreun jucator pe pozitia sa.
+        
+        La finalul rundei se sterg observatorii jucatorilor.
+        
+        
+         
 
 
 

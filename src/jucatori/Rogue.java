@@ -143,7 +143,7 @@ public final class Rogue extends Jucator implements Abilitati {
         dmg2 = Math.round(this.abilitate2() * bonusRasa2) * bonusTeren;
         dmgFaraBonusRasa += Math.round(this.abilitate2() * bonusTeren);
         jucator.setDmgFaraBonus(dmgFaraBonusRasa);
-        jucator.setTimpParalizat(runde + 1);
+        jucator.setTimpParalizat(runde);
         jucator.setParalizat(true);
         jucator.setDmgO(Math.round(dmg2));
         jucator.setTimeDmgO(runde);

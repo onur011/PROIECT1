@@ -30,7 +30,7 @@ public class SmallAngel extends Inger {
         knight.setVsKnight1(1f);
         knight.setHp(knight.getHp() + Constante.SMALLANGEL_HP_K);
         knight.notificaObserveri(this.seteazaOutput(knight));
-        //knight.verificareHp();
+        knight.verificareHp();
     }
 
     /**
@@ -44,7 +44,7 @@ public class SmallAngel extends Inger {
         pyromancer.modificaCoeficienti1(Constante.SMALLANGEL_P);
         pyromancer.setHp(pyromancer.getHp() + Constante.SMALLANGEL_HP_P);
         pyromancer.notificaObserveri(this.seteazaOutput(pyromancer));
-        //pyromancer.verificareHp();
+        pyromancer.verificareHp();
     }
 
     /**
@@ -59,7 +59,7 @@ public class SmallAngel extends Inger {
         rogue.modificaCoeficienti2(Constante.SMALLANGEL_R);
         rogue.setHp(rogue.getHp() + Constante.SMALLANGEL_HP_R);
         rogue.notificaObserveri(this.seteazaOutput(rogue));
-        //rogue.verificareHp();
+        rogue.verificareHp();
     }
 
     /**
@@ -74,6 +74,6 @@ public class SmallAngel extends Inger {
         wizard.modificaCoeficienti2(Constante.SMALLANGEL_W);
         wizard.setHp(wizard.getHp() + Constante.SMALLANGEL_HP_W);
         wizard.notificaObserveri(this.seteazaOutput(wizard));
-        //wizard.verificareHp();
+        wizard.verificareHp();
     }
 }

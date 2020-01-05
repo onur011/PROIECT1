@@ -43,25 +43,12 @@ public abstract class Inger implements Subject {
             o.update(str);
         }
     }
-    /**
-     * @return returneaza tipul de inger(bun/rau).
-     */
-    public boolean getBun() {
-        return this.bun;
-    }
 
     /**
      * @param bun seteaza tipul de inger.
      */
     public void setBun(final boolean bun) {
         this.bun = bun;
-    }
-
-    /**
-     * @return returneaza ce fel de inger este.
-     */
-    public String getTipInger() {
-        return this.tipInger;
     }
 
     /**
@@ -117,7 +104,7 @@ public abstract class Inger implements Subject {
         this.notificaObserveri(str);
     }
 
-    protected String outputSpawn(final Jucator jucator){
+    public String outputSpawn(final Jucator jucator){
         return "Player " + jucator.numeCaracter() + " " + jucator.getId()
         + " was brought to life by an angel";
     }
